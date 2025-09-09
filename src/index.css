@@ -78,7 +78,8 @@ button:focus-visible {
 
 .desktop-container {
   display: grid;
-  grid-template-columns: 75px 500px 500px;
+  grid-template-columns: 75px 1px auto;
+  grid-template-rows: 1fr;
   gap: 25px;
 }
 

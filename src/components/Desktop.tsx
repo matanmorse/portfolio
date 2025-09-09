@@ -12,7 +12,6 @@ const Desktop = ({children, fullscreenPlaceholderRef} : DesktopProps) => {
                 {children}
             </div>
             <div className="desktop-main">
-                <h1 className="page-title">Desktop</h1>
                 <div className="fullscreen-placeholder" ref={fullscreenPlaceholderRef}>
 
                 </div>

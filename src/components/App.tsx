@@ -56,9 +56,9 @@ function App() {
       minimizeWindow={minimizeWindow}
       maxWindowRef={maxWindowRef}
       />
-      <Taskbar openWindows={openWindows} toggleWindow={toggleWindowVisibility}/>
     </div>
-      
+    <Taskbar openWindows={openWindows} toggleWindow={toggleWindowVisibility}/>
+
     </>
   )
 }

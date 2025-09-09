@@ -1,7 +1,8 @@
 
 .window-manager {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: 300px 300px 300px;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 100px 300px 300px;
+    gap: 10px;
+    width: 100%;
 }

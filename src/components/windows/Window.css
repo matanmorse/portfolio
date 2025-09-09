@@ -41,6 +41,7 @@
     cursor:grab;
     user-select: none;
 }
+
 .window-controls {
     display: flex;
     justify-content: flex-end;

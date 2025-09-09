@@ -49,9 +49,8 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, minimizeWin
         setZIndexes(initialZIndexes);
     }, []);
 
-    useEffect(() => { console.log(minimizedWindows) }, [minimizedWindows]);
-
     return <div className="window-manager">
+        <h1>Desktop</h1>
         {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
             <>
                 {/* @ts-ignore */}
