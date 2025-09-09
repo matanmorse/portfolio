@@ -1,0 +1,59 @@
+.window {
+    --border-thickness: 3px;
+    border: var(--border-thickness) solid var(--background);
+    background-color: var(--background-alt-light);
+    border-radius: 4px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    transform: scale(0);
+    opacity: 0;
+    padding: 4px;
+    mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
+}
+
+.window.do-transition {
+    transition: 0.3s all ease;
+    transform-origin: bottom left;
+}
+
+.window.open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.window.fullscreen>.draggable-area:hover {
+    cursor: default;
+    user-select: none;
+}
+
+.window-content {
+    box-sizing: border-box;
+    padding: 25px;
+    padding-bottom: 0px !important;
+    overflow: auto;
+    height: calc(100% - 39px);
+}
+
+.draggable-area {
+    background-image: linear-gradient(to right, rgb(28, 46, 119),  rgb(107, 28, 119));
+    padding: 5px;
+    cursor:grab;
+    user-select: none;
+}
+.window-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+}
+
+.window-controls button {
+    appearance: none;
+    font-size: 12pt;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: var(--background-alt);
+    
+}

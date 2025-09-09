@@ -1,0 +1,88 @@
+:root {
+  font-family: "Jersey 15", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Backgrounds */
+  --background: #010D2F;      /* deep abyssal blue-black */
+  --background-alt: #232359;  /* slatey gray-blue for panels/windows */
+  --background-alt-light: #5555AE;
+  --background-very-light: #a8adb2;
+  /* Text */
+  --text-primary: #e6e6e6;    /* pale white-gray, readable main text */
+  --text-secondary: #9aa6b2;  /* soft desaturated gray-blue */
+  --text-accent: #c4e2ff;     /* pale ghostly cyan for highlights */
+
+  /* Brand / Primary accent */
+  --primary: #9aaae8;         /* knightly muted blue */
+  --primary-hover: #4f6dbd;   /* slightly brighter hover state */
+
+  /* Secondary accent */
+  --secondary: rgb(107, 28, 119);       /* deep violet (mystical, otherworldly) */
+  --secondary-hover: #9d558a; /* softer, enchanted hover tone */
+
+  /* Success / Confirmation */
+  --success: #4a7f6a;         /* mossy green (life/nature) */
+  --success-light: #6fa38e;   /* lighter teal-tinged moss */
+
+  /* Warnings / Highlights */
+  --warning: #d9a441;         /* muted amber (lamps, soul glow) */
+  --warning-light: #f2d091;   /* softer golden highlight */
+
+  /* Utility */
+  --border: #B3AAA9;          /* muted steel gray for outlines */
+  --muted: #5d6b7a;           /* desaturated gray-blue, inactive states */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;  
+  margin: 0;       
+  padding: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  font-family: inherit;
+  padding: 5px;
+  background-color: var(--background-alt);
+  font-size: 16pt;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 1px auto var(--text-primary);
+}
+
+.desktop-container {
+  display: grid;
+  grid-template-columns: 75px 500px 500px;
+  gap: 25px;
+}
+
+* {
+  color: var(--text-primary);
+  text-shadow: 2px 2px var(--background);
+}
