@@ -49,6 +49,7 @@ const GenericWindow =
             + (!isLoaded ? 'hidden ' : '')
             + (!isDragging ? 'do-transition ' : '') 
             + (isFullscreen && 'fullscreen' )} 
+            onMouseDown={() => promoteZIndex(windowId)}
             style={{left: pos.x, top: pos.y, width: size.width, height: size.height, zIndex: zIndex}} 
         >
             <div className="draggable-area" 

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import './WindowManager.css'
 import GenericWindow from "./windows/GenericWindow";
 import windowRegistry from "../windowRegistry";
+import type { WindowLayout } from "../types/LayoutTypes";
 
 interface WindowManagerProps {
     openWindows: string[],
@@ -9,12 +10,14 @@ interface WindowManagerProps {
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
     minimizeWindow: (windowId: string) => void,
     closeWindow: (windowId: string) => void,
+    onChangeLayout: (layout: WindowLayout) => void,
+    layout: WindowLayout
 }
 
-const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, minimizeWindow, closeWindow} : WindowManagerProps) => {
-    const placeholderRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, closeWindow} : WindowManagerProps) => {
+    const placeholderRefs = useRef<HTMLDivElement[]>([]);
     const [z_indexes, setZIndexes] = useState<{ [key: string]: number }>({});
-    
+
     const minimizeAllExceptThis = (thisWindow: string) => {
         Object.entries(windowRegistry).forEach(entry => {
             const windowId = entry[0]
@@ -24,6 +27,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, minimizeWin
     }
     /* Puts window with given ID on top of z index */
     const promoteZIndex = (windowId: string) => { 
+        console.log('here')
         const currentZIndex = z_indexes[windowId] || 0;
         const maxZIndex = Math.max(...Object.values(z_indexes), 0);
         if (currentZIndex === maxZIndex) return; // already on top
@@ -49,12 +53,25 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, minimizeWin
         setZIndexes(initialZIndexes);
     }, []);
 
+    useEffect(() => {
+        onChangeLayout(layout)
+    }, [])
+
+    const getWindowLayoutIndex = (windowId: string) => {
+        if (Object.keys(layout.layout).includes(windowId)) return layout.layout[windowId].position
+        else return 5
+    }
+
+    useEffect(() => {
+        onChangeLayout(layout)
+    }, [layout])
+
     return <div className="window-manager">
         <h1>Desktop</h1>
         {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
             <>
                 {/* @ts-ignore */}
-                <div className="window-placeholder" ref={el => placeholderRefs.current[windowId] = el} key={windowId + "-placeholder"}>
+                <div className="window-placeholder" ref={el => {if(!placeholderRefs.current.includes(el)) placeholderRefs.current.push(el)}} key={windowId + "-placeholder"}>
                 </div>
 
                 <GenericWindow 
@@ -67,7 +84,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, minimizeWin
                     closeWindow={closeWindow} 
                     minimizeWindow={minimizeWindow}
                     isOpen={openWindows.includes(windowId) && !minimizedWindows.includes(windowId)}
-                    placeholderRef={placeholderRefs.current[windowId]}
+                    placeholderRef={placeholderRefs.current[getWindowLayoutIndex(windowId)]}
                     maxWindowRef={maxWindowRef}
                 />
             </>

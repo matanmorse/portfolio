@@ -5,6 +5,8 @@ import WindowManager from './WindowManager'
 import Icon from './Icon'
 import './App.css'
 import { useRef, useState } from 'react'
+import Layout from './layouts/Layout'
+import type { WindowLayout } from '../types/LayoutTypes'
 
 function App() {
   const [openWindows, setOpenWindows] = useState<string[]>([])
@@ -39,6 +41,12 @@ function App() {
     }
   }
 
+  const onLayoutChange = (layout: WindowLayout) => {
+      console.log("changing layouts")
+      const windowsInLayout : string[] = Object.keys(layout.layout)
+      setOpenWindows(windowsInLayout)
+  }
+
   return (
     <>
     <div className="desktop-container">
@@ -50,6 +58,8 @@ function App() {
         <Icon opens="testimonials" title="Testimonials" imgName="react.svg" openWindow={openWindow} />
       </Desktop>
       <WindowManager 
+      layout={Layout}
+      onChangeLayout={onLayoutChange}
       openWindows={openWindows} 
       minimizedWindows={minimizedWindows} 
       closeWindow={closeWindow} 

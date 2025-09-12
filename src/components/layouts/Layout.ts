@@ -1,26 +1,18 @@
 import type { WindowLayout } from "../../types/LayoutTypes";
 
 const Layout : WindowLayout = {
+    title: "Desktop",
     layout: {
-        "about" : {
-            position: 0,
-            padding: 200,
+        'about': {
+            position: 1
         },
-        "work" : {
-            position: 1,
-            padding: 100,
-        },
-        "resume" : {
+        'resume': {
             position: 2
         },
-        "blog": {
+        'work': {
             position: 3
-        },
-        "testimonials": {
-            position: 4
         }
-    },
-    title: "Desktop"
+    }
 }
 
 export default Layout

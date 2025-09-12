@@ -4,6 +4,10 @@
     gap: 100px;
 }
 
+.desktop-main {
+    margin-left: 1rem;
+}
+
 .icons {
     height: 100%;
     user-select: none;
@@ -14,6 +18,7 @@
 }
 
 .fullscreen-placeholder {
+    margin-top: 75px;
     min-width: 85vw;
     width: 100%;
     min-height: 78vh;

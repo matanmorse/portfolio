@@ -80,7 +80,6 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 75px 1px auto;
   grid-template-rows: 1fr;
-  gap: 25px;
 }
 
 * {
