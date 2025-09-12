@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 interface LayoutOptions {
     placeholderRect: DOMRect,
+    placeholderRef?: HTMLDivElement | null
     maxWindowRect: DOMRect, 
     isOpen: boolean, 
     promoteZIndex: (windowId: string) => void,
@@ -10,11 +11,14 @@ interface LayoutOptions {
     pos: {x: number, y: number}
 }
 
-export function useWindowLayout({placeholderRect, maxWindowRect, isOpen, windowId, promoteZIndex, setPos, pos} : LayoutOptions) {
-    const [size, setSize] = useState({width: placeholderRect.width, height: placeholderRect.height})
+export function useWindowLayout({placeholderRef, maxWindowRect, isOpen, windowId, promoteZIndex, setPos, pos} : LayoutOptions) {
     const [savedPos, setSavedPos] = useState({x: -1, y: -1}) // the saved position when a window is minimized
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [placeholderRect, setPlaceholderRect] = useState<DOMRect>(new DOMRect(0,0,0,0))
+    const [size, setSize] = useState({width: 0, height: 0})
 
+    const hasPlaceholderRect = () => !(placeholderRect.x === 0 && placeholderRect.y === 0 && placeholderRect.height === 0 && placeholderRect.width === 0)
     const savePos = () => setSavedPos(pos)
     const restorePos = () => hasSavedPos() && setPos(savedPos);
     const hasSavedPos = () => !(savedPos.x === -1 && savedPos.y === -1)
@@ -40,12 +44,36 @@ export function useWindowLayout({placeholderRect, maxWindowRect, isOpen, windowI
         }
     }, [isOpen, isFullscreen]);
 
+    useLayoutEffect(() => {
+            setPlaceholderRect(placeholderRef?.getBoundingClientRect() || new DOMRect(0,0,0,0))
+        }, [placeholderRef]
+    )
+
+    useLayoutEffect(() => {
+        conformToPlaceholder()
+    }, [placeholderRect])
+
+    useLayoutEffect(() => {
+        conformToPlaceholder()
+    }, [])
+
+    const conformToPlaceholder = () => {
+        if (hasPlaceholderRect()) {
+            goToPlaceholder()
+            makePlaceholderSize()
+            setTimeout(() => {
+                setIsLoaded(true);
+            }, 0); 
+        }
+    }
+
     return {
     pos,
     setPos,
     size,
     setSize,
     isFullscreen,
+    isLoaded,
     setIsFullscreen,
     savePos,
     goToPlaceholder,

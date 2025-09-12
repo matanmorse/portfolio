@@ -26,6 +26,5 @@ export function useDraggable(initialPos = {x: 0, y:0 }) {
         document.removeEventListener("mouseup", onMouseUp);
         };
   }, [isDragging, offset]);
-
   return { pos, setPos, isDragging, onMouseMove, onMouseDown, onMouseUp };
 }

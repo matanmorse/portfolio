@@ -17,6 +17,11 @@
     transform-origin: bottom left;
 }
 
+.window.hidden { 
+    opacity: 0;
+    transition: none !important;
+}
+
 .window.open {
   opacity: 1;
   transform: scale(1);

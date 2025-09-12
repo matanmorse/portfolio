@@ -22,11 +22,12 @@ const GenericWindow =
     : GenericWindowProps) => {
     const placeholderRect : DOMRect = placeholderRef?.getBoundingClientRect() || new DOMRect(0, 0, 300, 200);
     const maxWindowRect : DOMRect = maxWindowRef.current?.getBoundingClientRect()  || new DOMRect(0, 0, 300, 200);
-
+        
     const { pos, setPos, isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({x: placeholderRect.x, y: placeholderRect.y})
 
-    const { size, isFullscreen, setIsFullscreen, savePos } = useWindowLayout({
+    const { size, isFullscreen, setIsFullscreen, isLoaded, savePos } = useWindowLayout({
         placeholderRect,
+        placeholderRef,
         maxWindowRect,
         isOpen,
         windowId,
@@ -39,9 +40,13 @@ const GenericWindow =
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }
     const onCloseWindow = () => closeWindow(windowId)
 
+    if (!isLoaded) {
+        return null
+    } else
     return (
         <div className={"window pixel-border " 
             + (isOpen ? 'open ' : '') 
+            + (!isLoaded ? 'hidden ' : '')
             + (!isDragging ? 'do-transition ' : '') 
             + (isFullscreen && 'fullscreen' )} 
             style={{left: pos.x, top: pos.y, width: size.width, height: size.height, zIndex: zIndex}} 
