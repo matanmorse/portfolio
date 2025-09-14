@@ -3,6 +3,7 @@ import { useDraggable } from "../../hooks/useDraggable";
 import { useWindowLayout } from "../../hooks/useWindowLayout";
 import WindowControls from "./WindowControls";
 import './Window.css'
+import type { WindowLayoutConfig } from "../../types/LayoutTypes";
 
 interface GenericWindowProps {
     content: JSX.Element,
@@ -14,11 +15,12 @@ interface GenericWindowProps {
     isOpen: boolean,
     zIndex: number,
     placeholderRef?: HTMLDivElement | null,
+    layoutEntry: WindowLayoutConfig | null,
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
 }
 
 const GenericWindow = 
-    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, windowId, isOpen, zIndex, placeholderRef, maxWindowRef} 
+    ({content, closeWindow, layoutEntry, minimizeWindow, promoteZIndex, minimizeAllExceptThis, windowId, isOpen, zIndex, placeholderRef, maxWindowRef} 
     : GenericWindowProps) => {
     const placeholderRect : DOMRect = placeholderRef?.getBoundingClientRect() || new DOMRect(0, 0, 300, 200);
     const maxWindowRect : DOMRect = maxWindowRef.current?.getBoundingClientRect()  || new DOMRect(0, 0, 300, 200);
@@ -26,6 +28,7 @@ const GenericWindow =
     const { pos, setPos, isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({x: placeholderRect.x, y: placeholderRect.y})
 
     const { size, isFullscreen, setIsFullscreen, isLoaded, savePos } = useWindowLayout({
+        layoutEntry,
         placeholderRect,
         placeholderRef,
         maxWindowRect,
@@ -46,7 +49,7 @@ const GenericWindow =
     return (
         <div className={"window pixel-border " 
             + (isOpen ? 'open ' : '') 
-            + (!isLoaded ? 'hidden ' : '')
+            + (!isLoaded || !layoutEntry ? 'hidden ' : '')
             + (!isDragging ? 'do-transition ' : '') 
             + (isFullscreen && 'fullscreen' )} 
             onMouseDown={() => promoteZIndex(windowId)}

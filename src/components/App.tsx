@@ -7,16 +7,12 @@ import './App.css'
 import { useRef, useState } from 'react'
 import Layout from './layouts/Layout'
 import type { WindowLayout } from '../types/LayoutTypes'
+import NewLayout from './layouts/NewLayout'
 
 function App() {
   const [openWindows, setOpenWindows] = useState<string[]>([])
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([])
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
-
-  const openWindow = (windowId: string) => {
-    if (openWindows.includes(windowId)) return
-    setOpenWindows([...openWindows, windowId])
-  }
 
   const closeWindow = (windowId: string) => { 
     setOpenWindows(openWindows.filter(id => id !== windowId))  
@@ -51,11 +47,8 @@ function App() {
     <>
     <div className="desktop-container">
       <Desktop fullscreenPlaceholderRef={maxWindowRef}>
-        <Icon opens="about" title="About" imgName="react.svg" openWindow={openWindow}/>
-        <Icon opens="resume" title="Resume" imgName="react.svg" openWindow={openWindow} />
-        <Icon opens="work" title="Work" imgName="react.svg" openWindow={openWindow} />
-        <Icon opens="blog" title="Blog" imgName="react.svg" openWindow={openWindow} />
-        <Icon opens="testimonials" title="Testimonials" imgName="react.svg" openWindow={openWindow} />
+        <Icon opens={Layout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>
+        <Icon opens={NewLayout} title="Work" imgName="react.svg" changeLayout={onLayoutChange} />
       </Desktop>
       <WindowManager 
       layout={Layout}

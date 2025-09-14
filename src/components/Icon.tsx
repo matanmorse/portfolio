@@ -1,17 +1,18 @@
+import type { WindowLayout } from '../types/LayoutTypes';
 import './Icon.css';
 
 interface IconProps {
-    opens: string,
+    opens: WindowLayout,
     title: string,
     imgName: string,
-    openWindow: (windowId: string) => void,
+    changeLayout: (layout: WindowLayout) => void,
 }
 
-const Icon = ({opens, title, imgName, openWindow} : IconProps) => {
+const Icon = ({opens, title, imgName, changeLayout} : IconProps) => {
     const imgSrc = new URL(`../assets/${imgName}`, import.meta.url).href;
 
     return (
-    <div className="icon" onDoubleClick={() => openWindow(opens)}>
+    <div className="icon" onDoubleClick={() => changeLayout(opens)}>
         <img src={imgSrc} alt={title} />
         {title}
     </div>

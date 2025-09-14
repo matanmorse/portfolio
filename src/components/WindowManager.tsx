@@ -62,19 +62,25 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
         else return 5
     }
 
+    const getWindowLayoutEntry = (windowId: string) => {
+        if (Object.keys(layout.layout).includes(windowId)) return layout.layout[windowId]
+        else return null
+    }
+
     useEffect(() => {
         onChangeLayout(layout)
     }, [layout])
 
     return <div className="window-manager">
-        <h1>Desktop</h1>
+        <h1>{layout.title}</h1>
         {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
             <>
                 {/* @ts-ignore */}
                 <div className="window-placeholder" ref={el => {if(!placeholderRefs.current.includes(el)) placeholderRefs.current.push(el)}} key={windowId + "-placeholder"}>
                 </div>
 
-                <GenericWindow 
+                <GenericWindow
+                    layoutEntry={getWindowLayoutEntry(windowId)}
                     minimizeAllExceptThis={minimizeAllExceptThis}
                     zIndex={z_indexes[windowId] || 1}
                     key={windowId}

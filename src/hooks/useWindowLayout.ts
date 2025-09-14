@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from "react";
+import type { WindowLayoutConfig } from "../types/LayoutTypes";
 
 interface LayoutOptions {
+    layoutEntry: WindowLayoutConfig | null
     placeholderRect: DOMRect,
     placeholderRef?: HTMLDivElement | null
     maxWindowRect: DOMRect, 
@@ -11,7 +13,7 @@ interface LayoutOptions {
     pos: {x: number, y: number}
 }
 
-export function useWindowLayout({placeholderRef, maxWindowRect, isOpen, windowId, promoteZIndex, setPos, pos} : LayoutOptions) {
+export function useWindowLayout({layoutEntry, placeholderRef, maxWindowRect, isOpen, windowId, promoteZIndex, setPos, pos} : LayoutOptions) {
     const [savedPos, setSavedPos] = useState({x: -1, y: -1}) // the saved position when a window is minimized
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -23,8 +25,8 @@ export function useWindowLayout({placeholderRef, maxWindowRect, isOpen, windowId
     const restorePos = () => hasSavedPos() && setPos(savedPos);
     const hasSavedPos = () => !(savedPos.x === -1 && savedPos.y === -1)
     const goToBottomLeft = () => setPos({ x: 0, y: window.innerHeight - 200 });
-    const goToPlaceholder = () => setPos({ x: placeholderRect.x, y: placeholderRect.y });
-    const makePlaceholderSize = () => setSize({width: placeholderRect.width, height: placeholderRect.height})
+    const goToPlaceholder = () => setPos({ x: placeholderRect.x + (layoutEntry?.offset?.x ?? 0), y: placeholderRect.y + (layoutEntry?.offset?.y ?? 0) });
+    const makePlaceholderSize = () => setSize({width: layoutEntry?.size.x ?? 0, height: layoutEntry?.size.y ?? 0})
 
     useEffect(() => {
         if (!isOpen) {

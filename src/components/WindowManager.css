@@ -1,9 +1,9 @@
 
 .window-manager {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, min(600px, 50%));
     grid-template-rows: 100px 300px 300px;
     gap: 10px;
     width: 100%;
-    margin-left: 1rem;
+    margin-left: 3rem;
 }
