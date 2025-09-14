@@ -1,4 +1,4 @@
-import { type JSX } from "react"
+import { useState, type JSX } from "react"
 import { useDraggable } from "../../hooks/useDraggable";
 import { useFullscreen } from "../../hooks/useFullscreen";
 import WindowControls from "./WindowControls";
@@ -12,6 +12,7 @@ interface GenericWindowProps {
     minimizeWindow: (windowId: string) => void,
     promoteZIndex: (windowId: string) => void,
     minimizeAllExceptThis: (thisWindow: string) => void,
+    maximizeAllWindows: () => void,
     windowId: string,
     isOpen: boolean,
     zIndex: number,
@@ -21,23 +22,24 @@ interface GenericWindowProps {
 }
 
 const GenericWindow = 
-    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef} 
+    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef} 
     : GenericWindowProps) => {
-        
-    const { pos, setPos, isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({x: 0, y: 0})
-
+    
+    const [pos, setPos] = useState({x: 0, y: 0})
+    const { isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({pos, setPos})
+    
     const { size, isFullscreen, setIsFullscreen, savePos, setSize } = useFullscreen({
         maxWindowRef,
         isOpen,
         windowId,
         promoteZIndex,
         setPos,
-        pos
+        pos,
+        layout
     })
 
-    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isOpen, setPos, setSize})
+    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows})
     
-
     const onMaximize = () => { if (!isFullscreen) minimizeAllExceptThis(windowId); setIsFullscreen(!isFullscreen) }
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }
     const onCloseWindow = () => closeWindow(windowId)

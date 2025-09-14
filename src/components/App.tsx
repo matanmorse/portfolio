@@ -27,7 +27,7 @@ function App() {
     }
 
   const maximizeWindow = (windowId: string) => {
-    setMinimizedWindows(minimizedWindows.filter(id => id !== windowId))
+    setMinimizedWindows(prev => prev.filter(id => id !== windowId));
   }
   
   const toggleWindowVisibility = (windowId: string) => {
@@ -43,6 +43,7 @@ function App() {
       const windowsInLayout : string[] = Object.keys(layout.layout)
       setLayout(layout)
       setOpenWindows(windowsInLayout)
+      setMinimizedWindows([])
   }
 
   return (
@@ -59,6 +60,7 @@ function App() {
       minimizedWindows={minimizedWindows} 
       closeWindow={closeWindow} 
       minimizeWindow={minimizeWindow}
+      maximizeWindow={maximizeWindow}
       maxWindowRef={maxWindowRef}
       />
     </div>

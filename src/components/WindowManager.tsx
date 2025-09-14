@@ -9,12 +9,13 @@ interface WindowManagerProps {
     minimizedWindows: string[],
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
     minimizeWindow: (windowId: string) => void,
+    maximizeWindow: (windowId: string) => void,
     closeWindow: (windowId: string) => void,
     onChangeLayout: (layout: WindowLayout) => void,
     layout: WindowLayout
 }
 
-const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, closeWindow} : WindowManagerProps) => {
+const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, maximizeWindow, closeWindow} : WindowManagerProps) => {
     const placeholderRefs = useRef<HTMLDivElement[]>([]);
     const [z_indexes, setZIndexes] = useState<{ [key: string]: number }>({});
 
@@ -25,6 +26,13 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
             minimizeWindow(windowId)
         })
     }
+
+    const maximizeAllWindows = () => {
+        Object.keys(layout.layout).forEach(windowId => {
+            maximizeWindow(windowId)
+        })
+    }
+
     /* Puts window with given ID on top of z index */
     const promoteZIndex = (windowId: string) => { 
         const currentZIndex = z_indexes[windowId] || 0;
@@ -53,7 +61,6 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     }, []);
 
     useEffect(() => {
-        console.log(layout)
         onChangeLayout(layout)
     }, [layout])
 
@@ -80,6 +87,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     windowId={windowId} 
                     closeWindow={closeWindow} 
                     minimizeWindow={minimizeWindow}
+                    maximizeAllWindows={maximizeAllWindows}
                     isOpen={openWindows.includes(windowId) && !minimizedWindows.includes(windowId)}
                     maxWindowRef={maxWindowRef}
                 />

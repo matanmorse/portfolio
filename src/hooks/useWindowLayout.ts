@@ -5,12 +5,13 @@ interface WindowLayoutProps {
     layout: WindowLayout,
     placeholderRefs: React.RefObject<HTMLDivElement[]>,
     windowId: string,
-    isOpen: boolean,
+    isFullscreen: boolean,
     setPos: ({x, y}: {x: number, y: number}) => void
     setSize: ({width, height} : {width: number, height: number}) => void
+    maximizeAllWindows: () => void,
 }
 
-export function useWindowLayout({layout, placeholderRefs, windowId, isOpen, setPos, setSize} : WindowLayoutProps) {
+export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows} : WindowLayoutProps) {
     const [inLayout, setInLayout]= useState(false)
     const [isLoadingLayout, setIsLoadingLayout] = useState(true)
 
@@ -37,8 +38,8 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isOpen, setP
         return offset
     }
 
+
     useLayoutEffect(() => {
-        console.log('changing layout for ' + windowId)
         setInLayout(hasLayoutEntry())
         setLayoutRect(getLayoutRect())
         setTimeout(() => setIsLoadingLayout(false), 1)
@@ -53,6 +54,16 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isOpen, setP
         setPos({x: layoutRect.x + offset.x, y: layoutRect.y + offset.y})
         setSize(getLayoutSize())
     }, [layoutRect])
+
+    useEffect(() => {
+        if (!isFullscreen) {
+            if (!hasLayoutEntry()) return
+            const offset = getLayoutOffset()
+            setPos({x: layoutRect.x + offset.x, y: layoutRect.y + offset.y})
+            setSize(getLayoutSize())
+            maximizeAllWindows()
+        }
+    }, [isFullscreen])
 
     return {inLayout, isLoadingLayout}
 }

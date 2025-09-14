@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 
-export function useDraggable(initialPos = {x: 0, y:0 }) {
-    const [pos, setPos] = useState(initialPos);
+interface useDraggableProps {
+    pos: {x: number, y: number},
+    setPos: ({x, y}: {x: number, y: number}) => void,
+}
+
+export function useDraggable({pos, setPos} : useDraggableProps) {
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 

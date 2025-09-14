@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import type { WindowLayout } from "../types/LayoutTypes";
 
-interface LayoutOptions {
+interface useFullscreenProps {
     maxWindowRef: React.RefObject<HTMLDivElement | null>, 
     isOpen: boolean, 
     promoteZIndex: (windowId: string) => void,
     windowId: string,
     setPos: ({x, y}: {x: number, y: number}) => void
-    pos: {x: number, y: number}
+    pos: {x: number, y: number},
+    layout: WindowLayout
 }
 
-export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, setPos, pos} : LayoutOptions) {
+export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, setPos, pos, layout} : useFullscreenProps) {
     const [savedPos, setSavedPos] = useState({x: -1, y: -1}) // the saved position when a window is minimized
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [size, setSize] = useState({width: 500, height: 500})
@@ -22,7 +24,7 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
 
     useEffect(() => {
         if (!isOpen) {
-            console.log('sending ' + windowId + ' to bottom left')
+            savePos()
             goToBottomLeft();
         } 
         else if (isFullscreen) {
@@ -37,6 +39,9 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
         }
     }, [isOpen, isFullscreen]);
     
+    useEffect(() => {
+        setIsFullscreen(false)
+    }, [layout])
     return {
     pos,
     setPos,
