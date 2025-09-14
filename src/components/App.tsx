@@ -14,6 +14,7 @@ function App() {
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([])
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
   const [layout, setLayout] = useState<WindowLayout>(Layout)
+  const [layoutToggle, setLayoutToggle] = useState(false)
 
   const closeWindow = (windowId: string) => { 
     setOpenWindows(openWindows.filter(id => id !== windowId))  
@@ -40,7 +41,9 @@ function App() {
 
   const onLayoutChange = (layout: WindowLayout) => {
       console.log("changing layouts")
+      setLayoutToggle(!layoutToggle) // force windows to conform to layout, even if the layout doesn't actually change
       const windowsInLayout : string[] = Object.keys(layout.layout)
+
       setLayout(layout)
       setOpenWindows(windowsInLayout)
       setMinimizedWindows([])
@@ -62,6 +65,7 @@ function App() {
       minimizeWindow={minimizeWindow}
       maximizeWindow={maximizeWindow}
       maxWindowRef={maxWindowRef}
+      layoutToggle={layoutToggle}
       />
     </div>
     <Taskbar openWindows={openWindows} toggleWindow={toggleWindowVisibility}/>

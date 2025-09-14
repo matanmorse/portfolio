@@ -12,10 +12,11 @@ interface WindowManagerProps {
     maximizeWindow: (windowId: string) => void,
     closeWindow: (windowId: string) => void,
     onChangeLayout: (layout: WindowLayout) => void,
-    layout: WindowLayout
+    layout: WindowLayout,
+    layoutToggle: boolean,
 }
 
-const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, maximizeWindow, closeWindow} : WindowManagerProps) => {
+const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, maximizeWindow, closeWindow, layoutToggle} : WindowManagerProps) => {
     const placeholderRefs = useRef<HTMLDivElement[]>([]);
     const [z_indexes, setZIndexes] = useState<{ [key: string]: number }>({});
 
@@ -90,6 +91,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     maximizeAllWindows={maximizeAllWindows}
                     isOpen={openWindows.includes(windowId) && !minimizedWindows.includes(windowId)}
                     maxWindowRef={maxWindowRef}
+                    layoutToggle={layoutToggle}
                 />
             </>
         ))}

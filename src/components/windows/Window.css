@@ -48,18 +48,25 @@
     user-select: none;
 }
 
-.window-controls {
+.window-controls.controls {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
     width: 100%;
+}
+
+.window-controls {
+    display: flex;
+    justify-content: space-between;
+}
+.window-title {
+    margin: 0rem;
 }
 
 .window-controls button {
     appearance: none;
     font-size: 12pt;
-    width: 30px;
-    height: 30px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
     background-color: var(--background-alt);
     

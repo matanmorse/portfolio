@@ -9,9 +9,10 @@ interface WindowLayoutProps {
     setPos: ({x, y}: {x: number, y: number}) => void
     setSize: ({width, height} : {width: number, height: number}) => void
     maximizeAllWindows: () => void,
+    layoutToggle: boolean,
 }
 
-export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows} : WindowLayoutProps) {
+export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows, layoutToggle} : WindowLayoutProps) {
     const [inLayout, setInLayout]= useState(false)
     const [isLoadingLayout, setIsLoadingLayout] = useState(true)
 
@@ -53,13 +54,11 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
         const offset = getLayoutOffset()
         setPos({x: layoutRect.x + offset.x, y: layoutRect.y + offset.y})
         setSize(getLayoutSize())
-    }, [layoutRect])
+    }, [layoutRect, layoutToggle])
 
     useEffect(() => {
         if (!isFullscreen) {
             if (!hasLayoutEntry()) return
-            const offset = getLayoutOffset()
-            setPos({x: layoutRect.x + offset.x, y: layoutRect.y + offset.y})
             setSize(getLayoutSize())
             maximizeAllWindows()
         }

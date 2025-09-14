@@ -18,11 +18,12 @@ interface GenericWindowProps {
     zIndex: number,
     layout: WindowLayout,
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
-    placeholderRefs: React.RefObject<HTMLDivElement[]>
+    placeholderRefs: React.RefObject<HTMLDivElement[]>,
+    layoutToggle: boolean,
 }
 
 const GenericWindow = 
-    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef} 
+    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef, layoutToggle} 
     : GenericWindowProps) => {
     
     const [pos, setPos] = useState({x: 0, y: 0})
@@ -38,7 +39,7 @@ const GenericWindow =
         layout
     })
 
-    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows})
+    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows, layoutToggle})
     
     const onMaximize = () => { if (!isFullscreen) minimizeAllExceptThis(windowId); setIsFullscreen(!isFullscreen) }
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }
@@ -58,6 +59,7 @@ const GenericWindow =
             /*@ts-ignore */ 
             onMouseDown={!isFullscreen ? onMouseDown : undefined} onMouseMove={onMouseMove}>
                 <WindowControls
+                    windowTitle={windowId.charAt(0).toLocaleUpperCase() + windowId.slice(1)}
                     closeWindow={onCloseWindow}
                     onMinimize={onMinimize}
                     onMaximize={onMaximize}

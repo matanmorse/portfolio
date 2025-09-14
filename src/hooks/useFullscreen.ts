@@ -29,7 +29,7 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
         } 
         else if (isFullscreen) {
             promoteZIndex(windowId);
-            setSavedPos({x: -1, y: -1}); // clear saved pos when going fullscreen so we return to placeholder on un fullscreen
+            savePos()
             setPos({ x: maxWindowRect.x, y: maxWindowRect.y });
             setSize({ width: maxWindowRect.width, height: maxWindowRect.height });
         } 
