@@ -1,9 +1,10 @@
 import { type JSX } from "react"
 import { useDraggable } from "../../hooks/useDraggable";
-import { useWindowLayout } from "../../hooks/useWindowLayout";
+import { useFullscreen } from "../../hooks/useFullscreen";
 import WindowControls from "./WindowControls";
 import './Window.css'
-import type { WindowLayoutConfig } from "../../types/LayoutTypes";
+import type { WindowLayout } from "../../types/LayoutTypes";
+import { useWindowLayout } from "../../hooks/useWindowLayout";
 
 interface GenericWindowProps {
     content: JSX.Element,
@@ -14,24 +15,19 @@ interface GenericWindowProps {
     windowId: string,
     isOpen: boolean,
     zIndex: number,
-    placeholderRef?: HTMLDivElement | null,
-    layoutEntry: WindowLayoutConfig | null,
+    layout: WindowLayout,
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
+    placeholderRefs: React.RefObject<HTMLDivElement[]>
 }
 
 const GenericWindow = 
-    ({content, closeWindow, layoutEntry, minimizeWindow, promoteZIndex, minimizeAllExceptThis, windowId, isOpen, zIndex, placeholderRef, maxWindowRef} 
+    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef} 
     : GenericWindowProps) => {
-    const placeholderRect : DOMRect = placeholderRef?.getBoundingClientRect() || new DOMRect(0, 0, 300, 200);
-    const maxWindowRect : DOMRect = maxWindowRef.current?.getBoundingClientRect()  || new DOMRect(0, 0, 300, 200);
         
-    const { pos, setPos, isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({x: placeholderRect.x, y: placeholderRect.y})
+    const { pos, setPos, isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({x: 0, y: 0})
 
-    const { size, isFullscreen, setIsFullscreen, isLoaded, savePos } = useWindowLayout({
-        layoutEntry,
-        placeholderRect,
-        placeholderRef,
-        maxWindowRect,
+    const { size, isFullscreen, setIsFullscreen, savePos, setSize } = useFullscreen({
+        maxWindowRef,
         isOpen,
         windowId,
         promoteZIndex,
@@ -39,17 +35,17 @@ const GenericWindow =
         pos
     })
 
+    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isOpen, setPos, setSize})
+    
+
     const onMaximize = () => { if (!isFullscreen) minimizeAllExceptThis(windowId); setIsFullscreen(!isFullscreen) }
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }
     const onCloseWindow = () => closeWindow(windowId)
 
-    if (!isLoaded) {
-        return null
-    } else
     return (
         <div className={"window pixel-border " 
             + (isOpen ? 'open ' : '') 
-            + (!isLoaded || !layoutEntry ? 'hidden ' : '')
+            + (isLoadingLayout ? 'hidden ' : '')
             + (!isDragging ? 'do-transition ' : '') 
             + (isFullscreen && 'fullscreen' )} 
             onMouseDown={() => promoteZIndex(windowId)}

@@ -10,9 +10,10 @@ import type { WindowLayout } from '../types/LayoutTypes'
 import NewLayout from './layouts/NewLayout'
 
 function App() {
-  const [openWindows, setOpenWindows] = useState<string[]>([])
+  const [openWindows, setOpenWindows] = useState<string[]>(['about'])
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([])
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
+  const [layout, setLayout] = useState<WindowLayout>(Layout)
 
   const closeWindow = (windowId: string) => { 
     setOpenWindows(openWindows.filter(id => id !== windowId))  
@@ -40,6 +41,7 @@ function App() {
   const onLayoutChange = (layout: WindowLayout) => {
       console.log("changing layouts")
       const windowsInLayout : string[] = Object.keys(layout.layout)
+      setLayout(layout)
       setOpenWindows(windowsInLayout)
   }
 
@@ -48,10 +50,10 @@ function App() {
     <div className="desktop-container">
       <Desktop fullscreenPlaceholderRef={maxWindowRef}>
         <Icon opens={Layout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>
-        <Icon opens={NewLayout} title="Work" imgName="react.svg" changeLayout={onLayoutChange} />
+        <Icon opens={NewLayout} title="New Layout" imgName="react.svg" changeLayout={onLayoutChange} />
       </Desktop>
       <WindowManager 
-      layout={Layout}
+      layout={layout}
       onChangeLayout={onLayoutChange}
       openWindows={openWindows} 
       minimizedWindows={minimizedWindows} 
@@ -61,7 +63,6 @@ function App() {
       />
     </div>
     <Taskbar openWindows={openWindows} toggleWindow={toggleWindowVisibility}/>
-
     </>
   )
 }

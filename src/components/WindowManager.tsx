@@ -27,7 +27,6 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     }
     /* Puts window with given ID on top of z index */
     const promoteZIndex = (windowId: string) => { 
-        console.log('here')
         const currentZIndex = z_indexes[windowId] || 0;
         const maxZIndex = Math.max(...Object.values(z_indexes), 0);
         if (currentZIndex === maxZIndex) return; // already on top
@@ -54,22 +53,13 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     }, []);
 
     useEffect(() => {
+        console.log(layout)
         onChangeLayout(layout)
-    }, [])
-
-    const getWindowLayoutIndex = (windowId: string) => {
-        if (Object.keys(layout.layout).includes(windowId)) return layout.layout[windowId].position
-        else return 5
-    }
-
-    const getWindowLayoutEntry = (windowId: string) => {
-        if (Object.keys(layout.layout).includes(windowId)) return layout.layout[windowId]
-        else return null
-    }
+    }, [layout])
 
     useEffect(() => {
         onChangeLayout(layout)
-    }, [layout])
+    }, [])
 
     return <div className="window-manager">
         <h1>{layout.title}</h1>
@@ -80,17 +70,17 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                 </div>
 
                 <GenericWindow
-                    layoutEntry={getWindowLayoutEntry(windowId)}
+                    key={windowId}
+                    layout={layout}
+                    placeholderRefs={placeholderRefs}
                     minimizeAllExceptThis={minimizeAllExceptThis}
                     zIndex={z_indexes[windowId] || 1}
-                    key={windowId}
                     promoteZIndex={promoteZIndex}
                     content={windowComponent} 
                     windowId={windowId} 
                     closeWindow={closeWindow} 
                     minimizeWindow={minimizeWindow}
                     isOpen={openWindows.includes(windowId) && !minimizedWindows.includes(windowId)}
-                    placeholderRef={placeholderRefs.current[getWindowLayoutIndex(windowId)]}
                     maxWindowRef={maxWindowRef}
                 />
             </>

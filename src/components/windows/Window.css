@@ -19,7 +19,7 @@
 }
 
 .window.hidden { 
-    opacity: 0;
+    visibility: hidden;
     transition: none !important;
 }
 
