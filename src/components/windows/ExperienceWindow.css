@@ -1,0 +1,137 @@
+.work > h1,h2,h3,h4,h5,h6{
+    margin: 0rem;
+}
+
+.work {
+    margin-bottom: var(--pm-sm);
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden, .work-content {
+    width: 50%;
+    padding: var(--pm-sm);
+}
+.work-timeline {
+    position: relative;
+    margin-bottom: calc(var(--pm-sm) + var(--pm-xsm))
+}
+
+@media (max-width: 1080px) {
+    .hidden {
+        display: none;
+    }
+
+    .work-content {
+        width: 100%;
+        padding: clamp(15px, 1vw, 20px);
+        word-break: break-word;
+    }
+
+    .window-content {
+        padding: clamp(10px, 2vw, var(--pm-sm))
+    }
+    .timeline-line, .timeline-dash {
+        display: none;
+    }
+
+}
+.work-content {
+    box-sizing: border-box;
+    border: 3px solid var(--background);
+    background-color: rgba(255,255,255,0.075);
+    mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
+}
+
+.dates-worked {
+    color: var(--color-accent-5);
+    margin-bottom: 3px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.company-location {
+    color: var(--on-surface-muted);
+}
+
+.timeline-line {
+    /* This is the main vertical divider */
+            position: absolute;
+            left: 50%;
+            width: 3px;
+            height: calc(100%);
+            background-color: rgba(0,0,0,.4);
+            transform: translateX(-50%);
+}
+
+.timeline-dash {
+    /* This is the main vertical divider */
+            position: absolute;
+            left: 50%;
+            height: 3px;
+            width: 25px;
+            background-color: #13132C;
+            transform: translateX(-50%);
+}
+
+.timeline-dash::before {
+    background-color: rgba(255,255,255, 0.1);
+    padding: 0.25rem;
+    border-radius: 2px;
+    position: absolute;
+    right: 120%;                
+    top: 50%;   
+    transform: translateY(-50%);
+    color: var(--on-surface-muted);
+    font-size: 14px;
+    text-align: right;
+    text-wrap: nowrap;
+    border: 1.5px solid var(--background);
+    border-radius: 2px;
+}
+
+.started-2nd-year {
+    top: 100%;
+}
+
+.started-2nd-year::before {
+     content: "Started 2nd Year";    
+}
+
+.started-3rd-year {
+    top: 5%;
+}
+
+.started-3rd-year::before {
+    content: "Started 3rd Year"
+}
+
+.start-2025 {
+    top: 35%;
+}
+
+.start-2025::before {
+    content: "2025"
+}
+
+.right::before {
+  transform: translateY(-50%) translateX(200%);
+}
+
+.date-today {
+    text-align: center;
+    margin-bottom: var(--pm-sm)
+}
+
+ul {
+    padding-left: var(--pm-sm);
+    font-size: medium;
+    margin-top: var(--pm-xsm);
+    margin-bottom: var(--pm-xsm);
+}
+
+.experience-title {
+    text-align: center;
+}

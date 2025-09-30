@@ -13,7 +13,7 @@ function App() {
   const [openWindows, setOpenWindows] = useState<string[]>(['about'])
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([])
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
-  const [layout, setLayout] = useState<WindowLayout>(Layout)
+  const [layout, setLayout] = useState<WindowLayout>(NewLayout)
   const [layoutToggle, setLayoutToggle] = useState(false)
 
   const closeWindow = (windowId: string) => { 
@@ -55,6 +55,8 @@ function App() {
       <Desktop fullscreenPlaceholderRef={maxWindowRef}>
         <Icon opens={Layout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>
         <Icon opens={NewLayout} title="Work" imgName="react.svg" changeLayout={onLayoutChange} />
+        <Icon opens={NewLayout} title="About" imgName="react.svg" changeLayout={onLayoutChange} />
+        <Icon opens={NewLayout} title="Blog" imgName="react.svg" changeLayout={onLayoutChange} />
       </Desktop>
       <WindowManager 
       layout={layout}

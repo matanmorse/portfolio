@@ -3,15 +3,11 @@ import type { WindowLayout } from "../../types/LayoutTypes";
 const NewLayout : WindowLayout = {
     title: "Work",
     layout: {
-        'resume': {
+        'experience': {
             position: 1,
-            size: {x: 400, y: 400},
-            offset: {x: 100, y: 0}
+            size: {x: 750, y: 700},
+            offset: {x: 200, y: -100}
         },
-        'testimonials': {   
-            position: 3,
-            size: {x: 900, y: 300}
-        }
     }
 }
 
