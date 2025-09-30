@@ -6,7 +6,7 @@ const Layout : WindowLayout = {
         'about': {
             position: 1,
             size: {x: 500, y:600},
-            offset: {x: 75, y:0}
+            offset: {x: 0, y:0}
         },
         'work': {
             position: 0,

@@ -54,7 +54,7 @@ function App() {
     <div className="desktop-container">
       <Desktop fullscreenPlaceholderRef={maxWindowRef}>
         <Icon opens={Layout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>
-        <Icon opens={NewLayout} title="New Layout" imgName="react.svg" changeLayout={onLayoutChange} />
+        <Icon opens={NewLayout} title="Work" imgName="react.svg" changeLayout={onLayoutChange} />
       </Desktop>
       <WindowManager 
       layout={layout}

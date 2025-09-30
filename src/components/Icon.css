@@ -4,7 +4,7 @@
     flex-direction: column;
     text-align: center;
     font-weight: bold;
-    align-items: center;;
+    align-items: center;
 }
 
 .icon:hover {
@@ -12,7 +12,14 @@
 }
 
 .icon img {
-    width: 48px;
-    height: 48px;
+    width: clamp(16px, 10vw, 48px);
+    height: clamp(16px, 10vw, 48px);
     margin-bottom: 2px;
+}
+
+@media(max-width: 1080px) {
+    
+    .icon {
+        font-size: medium;
+    }
 }

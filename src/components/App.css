@@ -1,18 +1,22 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
+  padding: clamp(5px, 2vw, 15px);
   height: 100%;
   /* background-image: linear-gradient(var(--background-alt-light), var(--background)); */
   /* background-image: url('../assets/background.jpg'); */
 }
 
+h1 {
+  margin-bottom: min(3rem, 1vw);
+}
 body {
-    background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)),
-    url('../assets/background4.png');
+  background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+  url('../assets/background6.png');
   background-size:cover;
   background-position: center; 
-
+  width: 100vw;
 }
+
 p, div {
   font-size: 16pt;
 }

@@ -4,6 +4,15 @@
     grid-template-columns: repeat(2, min(600px, 50%));
     grid-template-rows: 100px 300px 300px;
     gap: 10px;
-    width: 100%;
-    margin-left: 3rem;
+    margin-left: clamp(10px, 4vw, 2rem);
+}
+
+@media (max-width: 1080px) {
+    .window-manager {
+        display: block;
+        overflow-y: auto;
+    }
+    .window-manager > * {
+        margin-bottom: 4px;
+    }
 }

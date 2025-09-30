@@ -3,6 +3,7 @@ import './WindowManager.css'
 import GenericWindow from "./windows/GenericWindow";
 import windowRegistry from "../windowRegistry";
 import type { WindowLayout } from "../types/LayoutTypes";
+import MobileWindow from "./windows/MobileWindow";
 
 interface WindowManagerProps {
     openWindows: string[],
@@ -68,8 +69,8 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     useEffect(() => {
         onChangeLayout(layout)
     }, [])
-
-    return <div className="window-manager">
+    if (window.innerWidth >= 1080)
+    return (<div className="window-manager">
         <h1>{layout.title}</h1>
         {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
             <>
@@ -97,7 +98,21 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
         ))}
             
         
-    </div>
+    </div>)
+    else return(
+        <div className="window-manager">
+            <h1>{layout.title}</h1>
+            {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
+                <MobileWindow
+                    isOpen={!Object.keys(layout.layout).includes(windowId)}
+                    content={windowComponent}
+                    windowId={windowId}
+                />
+            ))}
+
+        </div>
+    )
+
 };
 
 export default WindowManager;

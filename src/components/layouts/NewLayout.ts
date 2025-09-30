@@ -1,7 +1,7 @@
 import type { WindowLayout } from "../../types/LayoutTypes";
 
 const NewLayout : WindowLayout = {
-    title: "New Layout",
+    title: "Work",
     layout: {
         'resume': {
             position: 1,

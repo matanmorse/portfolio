@@ -46,7 +46,7 @@ const GenericWindow =
     const onCloseWindow = () => closeWindow(windowId)
 
     return (
-        <div className={"window pixel-border " 
+        <div className={"window desktop-window pixel-border " 
             + (isOpen ? 'open ' : '') 
             + (isLoadingLayout ? 'hidden ' : '')
             + (!isDragging ? 'do-transition ' : '') 

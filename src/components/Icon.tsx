@@ -12,7 +12,7 @@ const Icon = ({opens, title, imgName, changeLayout} : IconProps) => {
     const imgSrc = new URL(`../assets/${imgName}`, import.meta.url).href;
 
     return (
-    <div className="icon" onDoubleClick={() => changeLayout(opens)}>
+    <div className="icon" onClick={() => changeLayout(opens)}>
         <img src={imgSrc} alt={title} />
         {title}
     </div>

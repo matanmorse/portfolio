@@ -1,5 +1,9 @@
+@font-face {
+  font-family: w95fa;
+  src: url('./assets/fonts/W95FA.otf');
+}
 :root {
-  font-family: "Jersey 15", sans-serif;
+  font-family: "w95fa", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,35 +16,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Backgrounds */
-  --background: #010D2F;      /* deep abyssal blue-black */
-  --background-alt: #232359;  /* slatey gray-blue for panels/windows */
-  --background-alt-light: #5555AE;
+  --background: #0d0c1d;      /* deep abyssal blue-black */
+  --background-alt: rgb(48, 48, 67);  /* slatey gray-blue for panels/windows */
+  --background-alt-light: rgb(31, 31, 73);
   --background-very-light: #a8adb2;
+  
   /* Text */
-  --text-primary: #e6e6e6;    /* pale white-gray, readable main text */
-  --text-secondary: #9aa6b2;  /* soft desaturated gray-blue */
-  --text-accent: #c4e2ff;     /* pale ghostly cyan for highlights */
-
-  /* Brand / Primary accent */
-  --primary: #9aaae8;         /* knightly muted blue */
-  --primary-hover: #4f6dbd;   /* slightly brighter hover state */
-
-  /* Secondary accent */
-  --secondary: rgb(107, 28, 119);       /* deep violet (mystical, otherworldly) */
-  --secondary-hover: #9d558a; /* softer, enchanted hover tone */
-
-  /* Success / Confirmation */
-  --success: #4a7f6a;         /* mossy green (life/nature) */
-  --success-light: #6fa38e;   /* lighter teal-tinged moss */
-
-  /* Warnings / Highlights */
-  --warning: #d9a441;         /* muted amber (lamps, soul glow) */
-  --warning-light: #f2d091;   /* softer golden highlight */
-
-  /* Utility */
-  --border: #B3AAA9;          /* muted steel gray for outlines */
-  --muted: #5d6b7a;           /* desaturated gray-blue, inactive states */
+ /* On-surface text */
+  --text-primary: #f2f2f5;       /* main text */
+  --on-surface-muted: #b8b8c7; /* secondary text */
+  
+  /* Interactive */
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(255, 255, 255, 0.1);
+  
+  /* Borders / dividers */
+  --surface-border: rgba(255, 255, 255, 0.08);
+    
+   /* Accents from skyline and stars */
+  --color-accent-1: #ff9c5f; /* warm orange lights */
+  --color-accent-2: #cf455f; /* neon pink/purple glow */
+  --color-accent-3: #4c44da; /* electric violet */
+  --color-accent-4: #7ce3dc; /* cyan-teal stars */
+ 
 }
 
 a {
@@ -67,8 +65,8 @@ h1 {
 button {
   font-family: inherit;
   padding: 5px;
-  background-color: var(--background-alt);
   font-size: 16pt;
+  background-color: var(--background-alt);
 }
 
 button:focus,
@@ -80,9 +78,15 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 75px 1px auto;
   grid-template-rows: 1fr;
+  margin-bottom: 10vh;
 }
 
 * {
-  color: var(--text-primary);
-  text-shadow: 2px 2px var(--background);
+   color: var(--text-primary);
+}
+
+@media (max-width: 1080px) {
+  #root {
+    overflow-y: auto;
+  }
 }
