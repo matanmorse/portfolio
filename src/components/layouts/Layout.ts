@@ -8,7 +8,7 @@ const Layout : WindowLayout = {
             size: {x: 500, y:600},
             offset: {x: 0, y:0}
         },
-        'work': {
+        'experience': {
             position: 0,
             size: {x: 750, y: 400},
             offset: {x: 100, y: 0}

@@ -5,6 +5,7 @@ import TestimonialsWindow from "./components/windows/TestimonialsWindow";
 import AboutWindow from "./components/windows/AboutWindow";
 import type { JSX } from "react";
 import ExperienceWindow from "./components/windows/ExperienceWindow";
+import ProjectsWindow from "./components/windows/ProjectsWindow";
 
 const windowRegistry : Record<string, JSX.Element> = {
     "about": AboutWindow(),
@@ -12,7 +13,8 @@ const windowRegistry : Record<string, JSX.Element> = {
     "work": WorkWindow(),
     "blog": BlogWindow(),
     "testimonials": TestimonialsWindow(),
-    "experience": ExperienceWindow()
+    "experience": ExperienceWindow(),
+    "projects": ProjectsWindow(),
 }
 
 export default windowRegistry

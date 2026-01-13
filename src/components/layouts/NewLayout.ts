@@ -5,9 +5,14 @@ const NewLayout : WindowLayout = {
     layout: {
         'experience': {
             position: 1,
-            size: {x: 750, y: 700},
-            offset: {x: 200, y: -100}
+            size: {x: 750, y: 600},
+            offset: {x: 0, y: -25}
         },
+        'projects': {
+            position: 0,
+            size: {x: 700, y: 600},
+            offset: {x: 150, y: 0}
+        }
     }
 }
 

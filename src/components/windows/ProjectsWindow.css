@@ -1,0 +1,183 @@
+
+:root {
+    --react-text: #1460b0;
+    --react-bg: #b4e2fd;
+    --electron-text: #829100;
+    --electron-bg:rgb(241, 255, 117);
+    --node-text: #336633;
+    --node-bg: #a3f37b;
+    --csharp-text: #442e94;
+    --csharp-bg: #b6a5f1;
+    --monogame-text: #6c1d00;
+    --monogame-bg: #ffac8e;
+    --vue-bg: #41B883;
+    --vue-text: #34495E;
+    --mongo-text: #3FA037;
+    --mongo-bg: #cce9ca;
+    --express-text: #0075C9;
+    --express-bg: #c5e4fa;
+    --azure-text: #104581;
+    --azure-bg: #9ac9ff;
+    --flask-bg: #c3e3f2;
+    --flask-text: #4caad8;
+}
+
+.projects > * {
+    margin-bottom: var(--pm-xsm)
+}
+.project {
+    background-color: rgba(255,255,255,0.1);
+    mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
+    border: 3px solid var(--background);
+    display: flex;
+}
+
+.technology-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--pm-xsm);
+}
+
+.project-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.window-content {
+    max-width: 950px;
+}
+.project-content {
+    padding-left: var(--pm-sm);
+    padding-right: var(--pm-sm);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+.project-summary {
+    font-size: 14pt;
+    margin-bottom: var(--pm-xsm) !important;
+    color: var(--on-surface-muted)
+}
+
+.skill {
+    font-size: 12pt;
+    border: none;
+    padding-left: var(--pm-xsm);
+    padding-right: var(--pm-xsm);
+    border-radius: 2px;
+}
+
+img.project-image {
+    object-fit: contain;
+}
+
+.project-image, img.project-image {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.blog-link {
+    background-color: var(--color-accent-5);
+    font-size: 12pt;
+    color: var(--text-dark);
+    padding: 0.25rem;
+    border-radius: 5px;
+    border: 1.5px solid var(--background)
+}
+
+.skill.react {
+    background-color: var(--react-bg);
+    color: var(--react-text);
+}
+
+.skill.electron {
+    background-color: var(--electron-bg);
+    color: var(--electron-text);
+}
+
+.skill.node {
+    background-color: var(--node-bg);
+    color: var(--node-text);
+}
+
+.skill.csharp {
+    background-color: var(--csharp-bg);
+    color: var(--csharp-text);
+}
+
+.skill.monogame {
+    background-color: var(--monogame-bg);
+    color: var(--monogame-text);
+}
+
+.skill.vue {
+    background-color: var(--vue-bg);
+    color: var(--vue-text);
+}
+
+.skill.mongo {
+    background-color: var(--mongo-bg);
+    color: var(--mongo-text);
+}
+
+.skill.express {
+    background-color: var(--express-bg);
+    color: var(--express-text);
+}
+
+.skill.azure {
+    background-color: var(--azure-bg);
+    color: var(--azure-text);
+}
+
+.skill.flask {
+    background-color: var(--flask-bg);
+    color: var(--flask-text);
+}
+
+
+.skill.pixelart {
+    background-image: linear-gradient(
+    to right,
+    rgb(255, 84, 84),
+    rgb(244, 181, 64),
+    rgb(241, 241, 63),
+    rgb(74, 248, 74),
+    rgb(87, 87, 255),
+    rgb(178, 70, 255),
+    rgb(255, 85, 255)
+  );
+ text-shadow:
+            0 0 5px var(--background),  /* First shadow layer: small blur, color blue */
+            0 0 10px var(--background), /* Second shadow layer: medium blur, same color */
+            0 0 20px var(--background); /* Third shadow layer: larger blur, same color */  
+    color: var(--text-primary)
+}
+
+@media (max-width: 1080px) {
+    .project {
+        flex-direction: column;
+    }
+
+    .project-image {
+        width: 100%;
+        position: relative;
+        text-align: center;
+        max-width: none;
+    }
+
+    .project-content {
+        width: fit-content;
+    }
+    .technology-stack {
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+    .project-title {
+        text-align: start;
+        flex-direction: column;
+        margin-bottom: var(--pm-xsm);
+        align-items: flex-start;
+    }
+}

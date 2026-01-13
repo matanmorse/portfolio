@@ -25,7 +25,7 @@
  /* On-surface text */
   --text-primary: #f2f2f5;       /* main text */
   --on-surface-muted: #c4c4d2; /* secondary text */
-  
+  --text-dark: #282831;
   /* Interactive */
   --surface-hover: rgba(255, 255, 255, 0.05);
   --surface-active: rgba(255, 255, 255, 0.1);
@@ -36,7 +36,7 @@
    /* Accents from skyline and stars */
   --color-accent-1: #ff9c5f; /* warm orange lights */
   --color-accent-2: #cf455f; /* neon pink/purple glow */
-  --color-accent-5: #db5081; /* neon pink/purple glow */
+  --color-accent-5: #d6618a; /* neon pink/purple glow */
   --color-accent-3: #4c44da; /* electric violet */
   --color-accent-4: #55beff; /* cyan-teal stars */
  

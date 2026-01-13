@@ -65,9 +65,11 @@ const GenericWindow =
                     onMaximize={onMaximize}
                 />
             </div>
-                <div className="window-content">
-                    {content}
-            </div>
+                <div className="window-content-wrapper">
+                    <div className="window-content">
+                        {content}
+                    </div>
+                </div>
         </div>
     )
 }

@@ -4,6 +4,7 @@ const ExperienceWindow = () => {
     return (
         <>
             <h4 className="experience-title">A brief timeline of some of my professional work and my proudest achievments in each </h4>
+            <hr></hr>
             <h5 className="date-today">Today</h5>
             <div className="work-timeline">
                 <div className="timeline-line">
