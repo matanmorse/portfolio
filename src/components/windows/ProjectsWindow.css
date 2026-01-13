@@ -20,6 +20,10 @@
     --azure-bg: #9ac9ff;
     --flask-bg: #c3e3f2;
     --flask-text: #4caad8;
+    --ubuntu-bg: #E95420;
+    --ubuntu-text: #FFFFFF;
+    --nginx-bg: #119639;
+    --nginx-text: #1a512b;
 }
 
 .projects > * {
@@ -55,7 +59,7 @@
     width: 100%;
 }
 .project-summary {
-    font-size: 14pt;
+    font-size: 1rem;
     margin-bottom: var(--pm-xsm) !important;
     color: var(--on-surface-muted)
 }
@@ -136,7 +140,6 @@ img.project-image {
     color: var(--flask-text);
 }
 
-
 .skill.pixelart {
     background-image: linear-gradient(
     to right,
@@ -153,6 +156,15 @@ img.project-image {
             0 0 10px var(--background), /* Second shadow layer: medium blur, same color */
             0 0 20px var(--background); /* Third shadow layer: larger blur, same color */  
     color: var(--text-primary)
+}
+.skill.ubuntu {
+    background-color: var(--ubuntu-bg);
+    color: var(--ubuntu-text)
+}
+
+.skill.nginx {
+    background-color: var(--nginx-bg);
+    color: var(--nginx-text);
 }
 
 @media (max-width: 1080px) {

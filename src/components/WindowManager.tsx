@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import './WindowManager.css'
 import GenericWindow from "./windows/GenericWindow";
-import windowRegistry from "../windowRegistry";
+import windowRegistry from "../windowRegistry.tsx";
 import type { WindowLayout } from "../types/LayoutTypes";
 import MobileWindow from "./windows/MobileWindow";
 
