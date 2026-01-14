@@ -59,7 +59,7 @@ const GenericWindow =
             /*@ts-ignore */ 
             onMouseDown={!isFullscreen ? onMouseDown : undefined} onMouseMove={onMouseMove}>
                 <WindowControls
-                    windowTitle={windowId.charAt(0).toLocaleUpperCase() + windowId.slice(1)}
+                    windowTitle={windowId.toLowerCase().split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}
                     closeWindow={onCloseWindow}
                     onMinimize={onMinimize}
                     onMaximize={onMaximize}

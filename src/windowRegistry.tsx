@@ -5,7 +5,7 @@ import TestimonialsWindow from "./components/windows/TestimonialsWindow";
 import AboutWindow from "./components/windows/AboutWindow";
 import ExperienceWindow from "./components/windows/ExperienceWindow";
 import ProjectsWindow from "./components/windows/ProjectsWindow";
-
+import ProjectLearningWindow from "./components/windows/ProjectLearningWindow";
 const windowRegistry  = {
     "about": <AboutWindow />,
     "resume": <ResumeWindow />,
@@ -14,6 +14,7 @@ const windowRegistry  = {
     "testimonials": <TestimonialsWindow />,
     "experience": <ExperienceWindow />,
     "projects": <ProjectsWindow />,
+    "project based learning": <ProjectLearningWindow />
 }
 
 export default windowRegistry

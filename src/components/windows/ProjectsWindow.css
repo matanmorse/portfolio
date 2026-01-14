@@ -24,8 +24,30 @@
     --ubuntu-text: #FFFFFF;
     --nginx-bg: #119639;
     --nginx-text: #1a512b;
+    --html-bg: #DD4B25;
+    --html-text: #FFFFFF;
+    --css-bg: #633194;
+    --css-text: #FFFFFF;
+    --javascript-bg: #e3d03c;
+    --javascript-text: #FFFFFF;
+    --bootstrap-bg: #633194;
+    --bootstrap-text: #FFFFFF;
+    --jinja-bg: #9c395a;
+    --jinja-text: #fadbe4;
+    --sqlite-bg: #0F80CC;
+    --sqlite-text: #90D4F4;
+    --python-bg: #306998;
+    --python-text: #ffec8b;
+    --selenium-bg: #6fb460;
+    --selenium-text: #efffce;
+
 }
 
+.project-type-selector {
+    display: flex;
+    margin-bottom: var(--pm-sm);
+    width: fit-content;
+}
 .projects > * {
     margin-bottom: var(--pm-xsm)
 }
@@ -34,6 +56,7 @@
     mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
     border: 3px solid var(--background);
     display: flex;
+    transform: 2s linear all;
 }
 
 .technology-stack {
@@ -69,7 +92,7 @@
     border: none;
     padding-left: var(--pm-xsm);
     padding-right: var(--pm-xsm);
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 img.project-image {
@@ -88,6 +111,10 @@ img.project-image {
     padding: 0.25rem;
     border-radius: 5px;
     border: 1.5px solid var(--background)
+}
+.skill.selenium {
+    background-color: var(--selenium-bg);
+    color: var(--selenium-text);
 }
 
 .skill.react {
@@ -120,7 +147,7 @@ img.project-image {
     color: var(--vue-text);
 }
 
-.skill.mongo {
+.skill.mongoDB {
     background-color: var(--mongo-bg);
     color: var(--mongo-text);
 }
@@ -140,7 +167,7 @@ img.project-image {
     color: var(--flask-text);
 }
 
-.skill.pixelart {
+.skill.pixel {
     background-image: linear-gradient(
     to right,
     rgb(255, 84, 84),
@@ -167,6 +194,40 @@ img.project-image {
     color: var(--nginx-text);
 }
 
+.skill.html {
+    background-color: var(--html-bg);
+    color: var(--html-text);
+}
+
+.skill.css {
+    background-color: var(--css-bg);
+    color: var(--css-text);
+}
+
+.skill.javascript {
+    background-color: var(--javascript-bg);
+    color: var(--javascript-text);
+}
+
+.skill.python {
+    background-color: var(--python-bg);
+    color: var(--python-text);
+}
+
+.skill.jinja {
+    background-color: var(--jinja-bg);
+    color: var(--jinja-text);
+}
+
+.skill.sqlite {
+    background-color: var(--sqlite-bg);
+    color: var(--sqlite-text);
+}
+
+.skill.bootstrap {
+    background-color: var(--bootstrap-bg);
+    color: var(--bootstrap-text);
+}
 @media (max-width: 1080px) {
     .project {
         flex-direction: column;

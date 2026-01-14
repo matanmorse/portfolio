@@ -11,7 +11,7 @@ const WindowControls = ({windowTitle, onMinimize, onMaximize, closeWindow} : Win
             <h3 className="window-title">{windowTitle}</h3>
             <div className="controls">
                 <button className="window-control minimize"
-                    onClick={onMaximize}>[]
+                    onClick={onMaximize}>🗖
                 </button>
                 <button className="window-control maximize"
                     onClick={onMinimize} >_
