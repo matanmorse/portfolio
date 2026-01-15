@@ -20,10 +20,11 @@ interface GenericWindowProps {
     maxWindowRef: React.RefObject<HTMLDivElement | null>,
     placeholderRefs: React.RefObject<HTMLDivElement[]>,
     layoutToggle: boolean,
+    title?:string,
 }
 
 const GenericWindow = 
-    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef, layoutToggle} 
+    ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef, layoutToggle, title} 
     : GenericWindowProps) => {
     
     const [pos, setPos] = useState({x: 0, y: 0})
@@ -45,6 +46,7 @@ const GenericWindow =
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }
     const onCloseWindow = () => closeWindow(windowId)
 
+    const capitalizedTitle = windowId.toLowerCase().split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
     return (
         <div className={"window desktop-window pixel-border " 
             + (isOpen ? 'open ' : '') 
@@ -59,7 +61,7 @@ const GenericWindow =
             /*@ts-ignore */ 
             onMouseDown={!isFullscreen ? onMouseDown : undefined} onMouseMove={onMouseMove}>
                 <WindowControls
-                    windowTitle={windowId.toLowerCase().split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}
+                    windowTitle={title ? title : capitalizedTitle}
                     closeWindow={onCloseWindow}
                     onMinimize={onMinimize}
                     onMaximize={onMaximize}

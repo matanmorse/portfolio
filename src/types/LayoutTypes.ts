@@ -3,6 +3,8 @@ export interface WindowLayoutConfig {
   padding?: number; 
   size: Point,
   offset?: Point,
+  props?:object,
+  title?:string,
 }
 
 export type Point = {

@@ -5,17 +5,20 @@ const Layout : WindowLayout = {
     layout: {
         'about': {
             position: 1,
-            size: {x: 500, y:600},
+            size: {x: 750, y:600},
             offset: {x: 0, y:0}
         },
-        'experience': {
+        'projects': {
             position: 0,
-            size: {x: 750, y: 400},
-            offset: {x: 100, y: 0}
+            size: {x: 1250, y: 610},
+            offset: {x: -300, y: 0},
+            props: {lockedType: 'featured'},
+            title: 'Featured Projects'
         },
         'blog': {   
             position: 4,
-            size: {x: 900, y: 300}
+            size: {x: 1100, y: 600},
+            offset: {x:-200,y:-100}
         }
     }
 }

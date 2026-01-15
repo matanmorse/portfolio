@@ -5,19 +5,19 @@ interface ProjectProps  {
 	title: string,
 	description: string,
 	skills: string[],
+    repoLink: string,
     hasBlogPost?: boolean
 }
-const Project = ({image, title, description, skills, hasBlogPost=false} : ProjectProps) => {
+const Project = ({image, title, description, skills, repoLink="", hasBlogPost=false} : ProjectProps) => {
 	return (
                 <div className="project">
-                    <div className="project-image" style={{backgroundColor: '#363442'}}>
-                        <img src={image} className="project-image" alt="project-image" />
+                    <div className="project-image" style={{backgroundImage: 'url('+image+')'}}>
                     </div>
                     <div className="project-content">
-                        <h3 className="project-title">
+                        <a className="project-title" href={repoLink} target='_blank'>
                             {title}
                             {hasBlogPost && <a href=".." className="blog-link">Read the blog post</a>}
-                        </h3>
+                        </a>
                         <p className="project-summary">
                             {description}
                         </p>

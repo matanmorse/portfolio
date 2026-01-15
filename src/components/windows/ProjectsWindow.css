@@ -35,12 +35,21 @@
     --jinja-bg: #9c395a;
     --jinja-text: #fadbe4;
     --sqlite-bg: #0F80CC;
-    --sqlite-text: #90D4F4;
+    --sqlite-text: #c6edff;
     --python-bg: #306998;
     --python-text: #ffec8b;
     --selenium-bg: #6fb460;
     --selenium-text: #efffce;
-
+    --django-bg: #073C2A;
+    --django-text: #FFFFFF;
+    --heroku-bg: #372565;
+    --heroku-text: #E5DEED;
+    --aws-bg: #ff9900;
+    --aws-text: #041835;
+    --postgresql-bg: #32648B;
+    --postgresql-text: #FFFFFF;
+    --agile-bg: #1D2F46;
+    --agile-text: #FFFFFF;
 }
 
 .project-type-selector {
@@ -66,9 +75,16 @@
 }
 
 .project-title {
+    text-decoration: none;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+
+}
+.project-title:hover {
+    color: inherit;
 }
 
 .window-content {
@@ -100,8 +116,9 @@ img.project-image {
 }
 
 .project-image, img.project-image {
-    max-width: 150px;
-    max-height: 150px;
+    flex: 0 0 150px;
+    background-size: cover;
+    background-position: center;
 }
 
 .blog-link {
@@ -112,6 +129,33 @@ img.project-image {
     border-radius: 5px;
     border: 1.5px solid var(--background)
 }
+
+.skill.heroku {
+    background-color: var(--heroku-bg);
+    color: var(--heroku-text);
+}
+
+.skill.django {
+    background-color: var(--django-bg);
+    color: var(--django-text);
+}
+
+.skill.AWS {
+    background-color: var(--aws-bg);
+    color: var(--aws-text);
+}
+
+.skill.postgreSQL {
+    background-color: var(--postgresql-bg);
+    color: var(--postgresql-text);
+}
+
+.skill.agile {
+    background-color: var(--agile-bg);
+    color: var(--agile-text);
+
+}
+
 .skill.selenium {
     background-color: var(--selenium-bg);
     color: var(--selenium-text);

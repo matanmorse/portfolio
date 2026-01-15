@@ -72,12 +72,11 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     if (window.innerWidth >= 1080)
     return (<div className="window-manager">
         <h1>{layout.title}</h1>
-        {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
+        {Object.entries(windowRegistry).map(([windowId, WindowComponent]) => (
             <>
                 {/* @ts-ignore */}
                 <div className="window-placeholder" ref={el => {if(!placeholderRefs.current.includes(el)) placeholderRefs.current.push(el)}} key={windowId + "-placeholder"}>
                 </div>
-
                 <GenericWindow
                     key={windowId}
                     layout={layout}
@@ -85,7 +84,10 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     minimizeAllExceptThis={minimizeAllExceptThis}
                     zIndex={z_indexes[windowId] || 1}
                     promoteZIndex={promoteZIndex}
-                    content={windowComponent} 
+                    content={<WindowComponent
+                    
+                        {...(layout.layout[windowId]??"{}").props} />
+                    } 
                     windowId={windowId} 
                     closeWindow={closeWindow} 
                     minimizeWindow={minimizeWindow}
@@ -93,6 +95,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     isOpen={openWindows.includes(windowId) && !minimizedWindows.includes(windowId)}
                     maxWindowRef={maxWindowRef}
                     layoutToggle={layoutToggle}
+                    title={(layout.layout[windowId]??"{}").title}
                 />
             </>
         ))}

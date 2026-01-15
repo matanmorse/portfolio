@@ -1,0 +1,14 @@
+.question-title {
+	color: var(--color-accent-5);
+	font-size: large;
+}
+
+.question-title+p {
+	font-size:large;
+	margin-bottom: 1rem;
+}
+
+a {
+	color: var(--color-accent-1);
+	text-decoration: underline;
+}
