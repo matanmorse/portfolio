@@ -16,12 +16,119 @@ import { useState } from "react"
 import Project from './Project.tsx'
 
 interface ProjectsWindowProps {
-    lockedType?: string
+    lockedType?: string,
+    carousel?: boolean,
 }
-const ProjectsWindow = ({lockedType=''}:ProjectsWindowProps) => {
-        const [projectSelector, setProjectSelector] = useState(lockedType=='' ? 'featured' : lockedType);
-        console.log(lockedType)
-    return (
+
+type Project = {
+    image: string,
+    title: string,
+    description: string,
+    skills: string[],
+    repoLink: string,
+    hasBlogPost?: boolean
+}
+
+const completedProjects : Project[] = [
+  {
+    image: VideoGameLendingSiteImage,
+    title: "Video Game Lending Site",
+    description: "A lending/loaning site made for UVA's 'Software Engineering' course in a team of 5",
+    skills: ['django','heroku','AWS','postgreSQL','bootstrap','agile'],
+    repoLink: 'https://polar-plateau-38917-b4d76ee652e1.herokuapp.com/'
+  },
+  {
+    image: couponScraperImage,
+    title: "Web Scraper",
+    description: "An app to scrape coupon websites and extract the best deals into an excel spreadsheet",
+    skills: ['python', 'selenium'],
+    repoLink: 'https://github.com/matanmorse/CouponWebScraper'
+  },
+  {
+    image: codeblogImage,
+    title: "matan.morse (Code Blog)",
+    description: "A blog site to post articles about my coding journey and share tips and tricks I have learned along the way",
+    skills: ['flask', 'jinja', 'sqlite', 'azure', 'bootstrap'],
+    repoLink: 'https://github.com/matanmorse/codeblog'
+  }
+]
+
+const featuredProjects = [
+  {
+    image: image,
+    title: "Steamulator",
+    description: "A steam-styled launcher for video game emulators like Citra, and MelonDS that runs on your PC",
+    skills: ['react', 'electron', 'node'],
+    repoLink: 'https://github.com/matanmorse/steamulation'
+  },
+  {
+    image: osrsLeaderboardImage,
+    title: "OSRSLeaderboard",
+    description: "A website for Old-School Runescape players to track their skills, quests, and progress and share with others",
+    skills: ['vue', 'node', 'mongoDB', 'express', 'azure'],
+    repoLink: 'https://github.com/matanmorse/OSRSLeaderboard'
+  },
+  {
+    image: projectPalladiumImage,
+    title: "Project Palladium",
+    description: "Video game engine written using the Monogame framework, used to make a mystical farm simulation game",
+    skills: ['csharp', 'monogame', 'pixel Art'],
+    repoLink: 'https://github.com/matanmorse/ProjectPalladium'
+  },
+  {
+    image: placeImage,
+    title: "Place",
+    description: "An r/place clone, deployed on a self-managed server within the UVA's network + bonus message board",
+    skills: ['vue', 'flask', 'ubuntu', 'nginx'],
+    repoLink: 'https://github.com/matanmorse/placeUVA'
+  },
+  {
+    image: odinProjectImage,
+    title: "The Odin Project",
+    description: "A collection of small web projects focusing on web development and design fundamentals",
+    skills: ['html', 'css', 'javascript'],
+    repoLink: 'https://github.com/matanmorse/admin-dashboard'
+  }
+]
+
+const shameProjects = [
+  {
+    image: chessengineImage,
+    title: "[WIP] Chess Engine",
+    description: "A chess engine in C, using traditional algorithmic techniques and aggressive optimization",
+    skills: ['c'],
+    repoLink: 'https://github.com/matanmorse/chess-engine'
+  },
+  {
+    image: okosImage,
+    title: "[WIP] OKOS",
+    description: "An operating system written in C using the GRUB bootloader, with a custom kernel and basic drivers (like the name-- it's just O.K.)",
+    skills: ['c'],
+    repoLink: 'https://github.com/matanmorse/OKOS'
+  }
+]
+
+const ProjectsWindow = ({lockedType='', carousel=false}:ProjectsWindowProps) => {
+    const [projectSelector, setProjectSelector] = useState(lockedType=='' ? 'featured' : lockedType);
+    const [index, setIndex] = useState(0);
+    var projects;
+    if (lockedType == 'featured') {
+        projects = featuredProjects;
+    } else if (lockedType == 'completed') {
+        projects = completedProjects    ;
+    }
+    else if (lockedType == 'shame') {
+        projects = shameProjects;
+    }
+    var current;
+    if (projects) {
+        current = projects[index];
+    }
+
+    const next = () => setIndex((index + 1) % projects.length)
+    const prev = () => setIndex((index - 1 + projects.length) % projects.length)
+
+    if (!carousel) return (
         <>
         {lockedType == '' &&
         <div className="project-type-selector">
@@ -34,87 +141,49 @@ const ProjectsWindow = ({lockedType=''}:ProjectsWindowProps) => {
         {(projectSelector == 'completed') && 
         <>
             <div className="projects">
-                <Project 
-                    image={VideoGameLendingSiteImage}
-                    title={"Video Game Lending Site"}
-                    description="A lending/loaning site made for UVA's 'Software Engineering' course in a team of 5"
-                    skills={['django','heroku','AWS','postgreSQL','bootstrap','agile']}
-                    repoLink='https://polar-plateau-38917-b4d76ee652e1.herokuapp.com/'
-                    />
-                <Project
-                        image={couponScraperImage}
-                        title={"Web Scraper"}
-                        description='An app to scrape coupon websites and extract the best deals into an excel spreadsheet'
-                        skills={['python', 'selenium']}
-                        repoLink='https://github.com/matanmorse/CouponWebScraper'
-                        />
-                <Project
-                        image={codeblogImage}
-                        title={"matan.morse (Code Blog)"}
-                        description='A blog site to post articles about my coding journey and share tips and tricks I have learned along the way'
-                        skills={['flask', 'jinja', 'sqlite', 'azure', 'bootstrap']} 
-                        repoLink='https://github.com/matanmorse/codeblog'/>
+                {completedProjects.map((project, index) => (
+                    <Project key={index} {...project} />
+                ))}
             </div>
         </>
         }
         {(projectSelector == 'featured' || projectSelector == 'completed') &&
             <div className="projects">
-                <Project
-                    image={image}
-                    title={"Steamulator"}
-                    description='A steam-styled launcher for video game emulators like Citra, and MelonDS that runs on your PC'
-                    skills={['react', 'electron', 'node']} 
-                    repoLink='https://github.com/matanmorse/steamulation'
-                    />
-                <Project
-                    image={osrsLeaderboardImage}
-                    title="OSRSLeaderboard"
-                    description='A website for Old-School Runescape players to track their skills, quests, and progress and share with others'
-                    skills={['vue', 'node', 'mongoDB', 'express', 'azure']} 
-                    repoLink='https://github.com/matanmorse/OSRSLeaderboard'/>
-                <Project
-                    image={projectPalladiumImage}
-                    title="Project Palladium"
-                    description='Video game engine written using the Monogame framework, used to make a mystical farm simulation game'
-                    skills={['csharp', 'monogame', 'pixel Art']} 
-                    repoLink='https://github.com/matanmorse/ProjectPalladium'/>
-                <Project
-                    image={placeImage}
-                    title="Place"
-                    description="An r/place clone, deployed on a self-managed server within the UVA's network + bonus message board"
-                    skills={['vue', 'flask', 'ubuntu', 'nginx']} 
-                    repoLink='https://github.com/matanmorse/placeUVA'
-                    />
-                
-                <Project
-                    image={odinProjectImage}
-                    title="The Odin Project"
-                    description="A collection of small web projects focusing on web development and design fundamentals"
-                    skills={['html', 'css', 'javascript']} 
-                    repoLink='https://github.com/matanmorse/admin-dashboard'
-                    />
+                {featuredProjects.map((project, index) => (
+                    <Project key={index} {...project} />
+                ))}
             </div>
             }
             {projectSelector == 'shame' && 
             <>
                 <div className="projects">
-                    <Project
-                        image={chessengineImage}
-                        title={"[WIP] Chess Engine"}
-                        description='A chess engine in C, using traditional algorithmic techniques and aggressive optimization'
-                        skills={['c']} 
-                        repoLink='https://github.com/matanmorse/chess-engine'/>
-                    <Project
-                        image={okosImage}
-                        title={"[WIP] OKOS"}
-                        description="An operating system written in C using the GRUB bootloader, with a custom kernel and basic drivers (like the name-- it's just O.K.)"
-                        skills={['c']} 
-                        repoLink='https://github.com/matanmorse/OKOS'/>
+                    {shameProjects.map((project, index) => (
+                    <Project key={index} {...project} />
+                    ))}
                 </div>
             </>
             }
         </>
         
+    )
+    else return(
+        <>
+        <div className="projects-carousel">
+            <button className="carousel-button left" onClick={prev}>&lt;</button>
+            {current && <Project {...current} />}
+            <button className="carousel-button right" onClick={next}>&gt;</button>
+            
+        </div>
+        <div className="carousel-dots">
+            {projects && projects.map((_, i) => (
+                <span
+                key={i}
+                className={i === index ? "dot active" : "dot"}
+                onClick={() => setIndex(i)}
+                />
+            ))}
+            </div>
+        </>
     )
   
 }

@@ -85,7 +85,6 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     zIndex={z_indexes[windowId] || 1}
                     promoteZIndex={promoteZIndex}
                     content={<WindowComponent
-                    
                         {...(layout.layout[windowId]??"{}").props} />
                     } 
                     windowId={windowId} 
@@ -96,6 +95,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
                     maxWindowRef={maxWindowRef}
                     layoutToggle={layoutToggle}
                     title={(layout.layout[windowId]??"{}").title}
+
                 />
             </>
         ))}
@@ -105,10 +105,11 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     else return(
         <div className="window-manager">
             <h1>{layout.title}</h1>
-            {Object.entries(windowRegistry).map(([windowId, windowComponent]) => (
+            {Object.entries(windowRegistry).map(([windowId, WindowComponent]) => (
                 <MobileWindow
                     isOpen={!Object.keys(layout.layout).includes(windowId)}
-                    content={windowComponent}
+                    content={<WindowComponent
+                        {...(layout.layout[windowId]??"{}").props} />}
                     windowId={windowId}
                 />
             ))}

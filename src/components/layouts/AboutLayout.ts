@@ -7,6 +7,11 @@ const AboutLayout : WindowLayout = {
 			position: 1,
 			size: {x:1000,y:1000},
 			offset: {x:0, y:0}
+		},
+		'testimonials': {
+			position: 2,
+			size: {x:1000,y:1000},
+			offset: {x:0, y:-100}
 		}
 	}
 }

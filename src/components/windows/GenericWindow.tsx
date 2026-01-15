@@ -27,7 +27,15 @@ const GenericWindow =
     ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef, layoutToggle, title} 
     : GenericWindowProps) => {
     
-    const [pos, setPos] = useState({x: 0, y: 0})
+    const [pos, setPosDontUse] = useState({x: 0, y: 0})
+
+    // auto round to avoid sub pixel issues
+    const setPos = ({ x, y }: { x: number; y: number }) => {
+        setPosDontUse({
+            x: Math.min(window.innerWidth - 50, Math.max(0,Math.round(x))),
+            y: Math.min(window.innerHeight - 50, Math.max(0, Math.round(y))),
+        })
+    }
     const { isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({pos, setPos})
     
     const { size, isFullscreen, setIsFullscreen, savePos, setSize } = useFullscreen({
@@ -55,6 +63,7 @@ const GenericWindow =
             + (isFullscreen && 'fullscreen' )} 
             onMouseDown={() => promoteZIndex(windowId)}
             style={{left: pos.x, top: pos.y, width: size.width, height: size.height, zIndex: zIndex}} 
+            id={windowId}
         >
             <div className="draggable-area" 
             onMouseUp={onMouseUp} 

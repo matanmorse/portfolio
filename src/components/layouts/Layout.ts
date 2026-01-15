@@ -10,15 +10,15 @@ const Layout : WindowLayout = {
         },
         'projects': {
             position: 0,
-            size: {x: 1250, y: 610},
-            offset: {x: -300, y: 0},
-            props: {lockedType: 'featured'},
+            size: {x: 1000, y: 430},
+            offset: {x: -100, y: 0},
+            props: {lockedType: 'featured', carousel: true},
             title: 'Featured Projects'
         },
         'blog': {   
             position: 4,
             size: {x: 1100, y: 600},
-            offset: {x:-200,y:-100}
+            offset: {x:-300,y:-200}
         }
     }
 }

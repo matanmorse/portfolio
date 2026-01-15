@@ -33,7 +33,6 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
     const hasLayoutEntry = () => Object.keys(layout.layout).includes(windowId)
 
     const getLayoutRect = () : DOMRect => {
-        console.log("getting layout rect")
         if (!hasLayoutEntry()) return new DOMRect(-1,-1,-1,-1)
         const position = layout.layout[windowId].position
         const placeHolderRef = placeholderRefs.current[position]

@@ -103,6 +103,48 @@
     color: var(--on-surface-muted)
 }
 
+.projects-carousel {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    height: 20vh;
+    width: 35vw;
+    margin-left: auto ;
+    margin-right: auto;
+}
+
+
+.project-content {
+    overflow: auto;
+    min-height: max-content;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dot.active {
+  background: var(--color-accent-2);
+  transform: scale(1.4);
+}
+
 .skill {
     font-size: 12pt;
     border: none;
@@ -116,7 +158,7 @@ img.project-image {
 }
 
 .project-image, img.project-image {
-    flex: 0 0 150px;
+    flex: 0 0 max(150px, 25%);
     background-size: cover;
     background-position: center;
 }

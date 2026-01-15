@@ -14,7 +14,7 @@ function App() {
   const [openWindows, setOpenWindows] = useState<string[]>(['about'])
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([])
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
-  const [layout, setLayout] = useState<WindowLayout>(AboutLayout)
+  const [layout, setLayout] = useState<WindowLayout>(Layout)
   const [layoutToggle, setLayoutToggle] = useState(false)
 
   const closeWindow = (windowId: string) => { 
@@ -41,7 +41,6 @@ function App() {
   }
 
   const onLayoutChange = (layout: WindowLayout) => {
-      console.log("changing layouts")
       setLayoutToggle(!layoutToggle) // force windows to conform to layout, even if the layout doesn't actually change
       const windowsInLayout : string[] = Object.keys(layout.layout)
 

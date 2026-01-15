@@ -17,6 +17,7 @@ body {
   width: 100vw;
 }
 
-p, div {
+p, div, li {
+  color: rgba(255,255,255,0.85);
   font-size: 16pt;
 }

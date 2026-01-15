@@ -1,0 +1,35 @@
+.speech-bubble {
+  position: relative;
+  background: rgba(255,255,255,0.075);
+  border-radius: 5px;
+  padding: 16px 20px;
+  border-top-left-radius: 0px;
+    padding: 1rem !important;
+    color: rgba(255,255,255,0.8);
+    margin-left: 20px !important;
+    max-width: max(80%, 400px);
+    font-size: 18pt;
+    line-height: 1.7;
+}
+
+.bubble-wrap {
+    position:relative;
+    display: inline-block;
+}
+
+.testimonial-author {
+    font-size: 14pt;
+    margin-left: 2rem;
+    color: var(--color-accent-5);
+}
+/* Outer tail (border) */
+
+svg {
+    transform: translateZ(0);
+    width:20px !important;
+    position:absolute;
+    left:0px;
+    top:0px;
+    color: rgba(255,255,255,0.075);
+}
+
