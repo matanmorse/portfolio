@@ -36,21 +36,25 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     }
 
     /* Puts window with given ID on top of z index */
-    const promoteZIndex = (windowId: string) => { 
-        const currentZIndex = z_indexes[windowId] || 0;
-        const maxZIndex = Math.max(...Object.values(z_indexes), 0);
-        if (currentZIndex === maxZIndex) return; // already on top
-        else {
-            const newZIndexes = { ...z_indexes };
-            Object.keys(newZIndexes).forEach(id => {
-                if (newZIndexes[id] > currentZIndex) {
-                    newZIndexes[id] -= 1;
-                }
-            });
-            newZIndexes[windowId] = maxZIndex;
-            setZIndexes(newZIndexes);
+    const promoteZIndex = (windowId: string) => {
+    setZIndexes(prev => {
+        const currentZIndex = prev[windowId] || 0;
+        const maxZIndex = Math.max(...Object.values(prev), 0);
+
+        if (currentZIndex === maxZIndex) return prev;
+
+        const next = { ...prev };
+
+        Object.keys(next).forEach(id => {
+        if (next[id] > currentZIndex) {
+            next[id] -= 1;
         }
-    }
+        });
+
+        next[windowId] = maxZIndex; 
+        return next;
+    });
+    };
 
     useEffect(() => {
         // initialize z_indexes

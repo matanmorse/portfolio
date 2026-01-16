@@ -6,10 +6,16 @@ interface BlogPreviewProps {
 }
 
 const BlogPreview = ({post}: BlogPreviewProps) => {
-    const {openWindow} = UseWindowContext();
-
+    const {openWindow, closeWindow, isWindowOpen, isWindowMinimized} = UseWindowContext();
     return (
-         <div key={post.id} onClick={() => openWindow('about')} className="blog-post pixel-border">
+         <div key={post.id} onClick={() => {
+            if (!isWindowOpen(post.title) || isWindowMinimized(post.title)) {
+                openWindow(post.title);
+            }
+            else {
+                closeWindow(post.title);
+            }
+         }} className="blog-post pixel-border">
             <div className="blog-post-header">
                 <h2 className="blog-post-title">{post.title}</h2>
                 <div className="blog-post-date">{post.date.toDateString()}</div>

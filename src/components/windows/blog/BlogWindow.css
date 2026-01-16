@@ -3,7 +3,11 @@
     background-color: var(--surface-active);
     transition: 0.2s all;
 }
-
+.blog-posts {
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+}
 .blog-post-header {
     display: flex;
     justify-content: space-between;

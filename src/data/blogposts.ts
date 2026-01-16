@@ -18,6 +18,22 @@ const blogPosts: Blog[] = [
         byline: "Or: Pain, Agony, and TypeScript",
         content : MakingThisWebsite,
         tags: ["website", "react", "typescript"]
+    },
+    {
+        id: "post-2",
+        title: "Post 2",
+        date: new Date("2026-1-16"),
+        byline: "Or: Pain, Agony, and TypeScript",
+        content : MakingThisWebsite,
+        tags: ["website", "react", "typescript"]
+    },
+    {
+        id: "post-3",
+        title: "Post 3",
+        date: new Date("2026-1-16"),
+        byline: "Or: Pain, Agony, and TypeScript",
+        content : MakingThisWebsite,
+        tags: ["website", "react", "typescript"]
     }
 ];
 

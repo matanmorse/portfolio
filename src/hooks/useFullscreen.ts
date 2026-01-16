@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { WindowLayout } from "../types/LayoutTypes";
+import getScale from "./scale"
 
 interface useFullscreenProps {
     maxWindowRef: React.RefObject<HTMLDivElement | null>, 
@@ -14,7 +15,9 @@ interface useFullscreenProps {
 export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, setPos, pos, layout} : useFullscreenProps) {
     const [savedPos, setSavedPos] = useState({x: -1, y: -1}) // the saved position when a window is minimized
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [size, setSize] = useState({width: 500, height: 500})
+    const [size, setSize] = useState({width: 1600, height: 1250})
+    const [savedSize] = useState(size) // default, for blog posts and other non-layout windows
+
     const maxWindowRect = maxWindowRef?.current?.getBoundingClientRect() || new DOMRect(0,0,0,0);    
 
     const savePos = () => setSavedPos(pos)
@@ -23,6 +26,7 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
     const goToBottomLeft = () => setPos({ x: 0, y: window.innerHeight - 200 });
 
     useEffect(() => {
+        console.log('hit thingy')
         if (!isOpen) {
             savePos()
             goToBottomLeft();
@@ -34,6 +38,8 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
             setSize({ width: maxWindowRect.width, height: maxWindowRect.height });
         } 
         else {
+            const {sx, sy} = getScale();
+            if (!layout.layout[windowId]) setSize({width: savedSize.width * sx, height: savedSize.height * sy});  
             promoteZIndex(windowId);
             if (hasSavedPos()) {restorePos(); return}
         }

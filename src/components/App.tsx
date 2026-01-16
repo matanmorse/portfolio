@@ -22,6 +22,10 @@ function App() {
   const [layout, setLayout] = useState<WindowLayout>(DEFAULT_LAYOUT)
   const [layoutToggle, setLayoutToggle] = useState(false)
 
+  const isWindowOpen = (windowId: string) => openWindows.includes(windowId)
+
+  const isWindowMinimized = (windowId: string) => minimizedWindows.includes(windowId)
+
   const closeWindow = (windowId: string) => { 
     setOpenWindows(openWindows.filter(id => id !== windowId))  
   }
@@ -63,7 +67,7 @@ function App() {
   }
 
   return (
-      <WindowContext.Provider value={{openWindow, closeWindow}}>
+      <WindowContext.Provider value={{openWindow, closeWindow, minimizeWindow, isWindowOpen, isWindowMinimized}}>
         <div className="desktop-container">
           <Desktop fullscreenPlaceholderRef={maxWindowRef}>
             <Icon opens={HomeLayout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>

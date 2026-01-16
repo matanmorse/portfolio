@@ -1,8 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import type { Point, WindowLayout } from "../types/LayoutTypes"
-
-const BASE_WIDTH = 2560
-const BASE_HEIGHT = 1440
+import getScale from "./scale"
 
 interface WindowLayoutProps {
     layout: WindowLayout,
@@ -13,23 +11,17 @@ interface WindowLayoutProps {
     pos: {x: number, y: number},
     setSize: ({width, height} : {width: number, height: number}) => void
     maximizeAllWindows: () => void,
+    promoteZIndex: (windowId: string) => void,
     layoutToggle: boolean,
 }
 
-export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, layoutToggle} : WindowLayoutProps) {
+export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, promoteZIndex, layoutToggle} : WindowLayoutProps) {
     const [inLayout, setInLayout]= useState(false)
     const [isLoadingLayout, setIsLoadingLayout] = useState(true)
     const [scaleTick, setScaleTick] = useState(0);
 
     
-    const getScale = () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        return {
-            sx: w / BASE_WIDTH,
-            sy: h / BASE_HEIGHT,
-        }
-    }
+    
 
     const hasLayoutEntry = () => Object.keys(layout.layout).includes(windowId)
 
@@ -74,7 +66,8 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
         const offset = getLayoutOffset()
 
         // kinda hacky, but prevent windows from going offscreen when resizing
-        if(layoutRect.y + offset.y > window.innerHeight - getLayoutSize().height - 80) {
+        if(hasLayoutEntry() && layoutRect.y + offset.y > window.innerHeight - getLayoutSize().height - 20) {
+            console.log('adjusting y offset')
             offset.y = window.innerHeight - getLayoutSize().height - layoutRect.y - 80
         }
         
@@ -84,9 +77,12 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
 
     useEffect(() => {
         if (!isFullscreen) {
+            maximizeAllWindows()
+            setTimeout(() => {
+                promoteZIndex(windowId)
+            }, 100);
             if (!hasLayoutEntry()) return
             setSize(getLayoutSize())
-            maximizeAllWindows()
         }
     }, [isFullscreen])
 

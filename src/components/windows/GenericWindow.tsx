@@ -5,6 +5,7 @@ import WindowControls from "./WindowControls";
 import './Window.css'
 import type { WindowLayout } from "../../types/LayoutTypes";
 import { useWindowLayout } from "../../hooks/useWindowLayout";
+import getScale from "../../hooks/scale";
 
 interface GenericWindowProps {
     content: JSX.Element,
@@ -27,13 +28,14 @@ const GenericWindow =
     ({content, closeWindow, minimizeWindow, promoteZIndex, minimizeAllExceptThis, maximizeAllWindows, placeholderRefs, windowId, layout, isOpen, zIndex, maxWindowRef, layoutToggle, title} 
     : GenericWindowProps) => {
     
-    const [pos, setPosDontUse] = useState({x: 0, y: 0})
+    const [pos, setPosDontUse] = useState({x: 300, y: 50});
 
     // auto round to avoid sub pixel issues
     const setPos = ({ x, y }: { x: number; y: number }) => {
+        const {sx, sy} = getScale()
         setPosDontUse({
-            x: Math.min(window.innerWidth - 50, Math.max(0,Math.round(x))),
-            y: Math.min(window.innerHeight - size.height, Math.max(0, Math.round(y))),
+            x: Math.min(window.innerWidth / sx - 50, Math.max(0,Math.round(x))),
+            y: Math.min(window.innerHeight / sy - size.height, Math.max(0, Math.round(y))),
         })
     }
 
@@ -49,7 +51,7 @@ const GenericWindow =
         layout
     })
 
-    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, layoutToggle})
+    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, promoteZIndex, layoutToggle})
     
     const onMaximize = () => { if (!isFullscreen) minimizeAllExceptThis(windowId); setIsFullscreen(!isFullscreen) }
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }

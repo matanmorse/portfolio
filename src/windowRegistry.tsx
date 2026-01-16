@@ -6,7 +6,15 @@ import ProjectsWindow from "./components/windows/projects/ProjectsWindow";
 import ProjectLearningWindow from "./components/windows/projects/ProjectLearningWindow";
 import FAQWindow from "./components/windows/FAQ/FAQWindow";
 import BlogTipWindow from "./components/windows/tips/BlogTipWindow";
-const windowRegistry  = {
+import blogPosts from "./data/blogposts";
+
+const derivedRegisry = Object.fromEntries(
+    blogPosts.map(post => [
+        post.title, post.content
+    ])
+)
+
+const manualRegistry  = {
     "about": AboutWindow,
     "blog": BlogWindow,
     "testimonials": TestimonialsWindow,
@@ -17,4 +25,10 @@ const windowRegistry  = {
     "tip: blogs": BlogTipWindow,
 }
 
+const windowRegistry = {
+    ...manualRegistry,
+    ...derivedRegisry
+}
+
+console.log(windowRegistry);
 export default windowRegistry

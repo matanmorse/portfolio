@@ -2,7 +2,10 @@ import { createContext, useContext } from "react";
 
 type WindowContextType = { 
     openWindow: (id: string) => void;
-    closeWindow: (id: string) => void;   
+    closeWindow: (id: string) => void; 
+    minimizeWindow: (id: string) => void;  
+    isWindowOpen: (id: string) => boolean;
+    isWindowMinimized: (id: string) => boolean; 
 }
 
 export const WindowContext = createContext<WindowContextType | null>(null);
