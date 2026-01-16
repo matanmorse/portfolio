@@ -5,10 +5,10 @@ import WindowManager from './WindowManager'
 import Icon from './Icon'
 import './App.css'
 import { useRef, useState } from 'react'
-import Layout from './layouts/Layout'
+import Layout from '../data/layouts/HomeLayout'
 import type { WindowLayout } from '../types/LayoutTypes'
-import NewLayout from './layouts/NewLayout'
-import AboutLayout from './layouts/AboutLayout'
+import NewLayout from '../data/layouts/WorkLayout'
+import AboutLayout from '../data/layouts/AboutLayout'
 
 function App() {
   const [openWindows, setOpenWindows] = useState<string[]>(['about'])

@@ -1,6 +1,6 @@
-import './Window.css'
+import '../Window.css'
 import './AboutWindow.css'
-import matanPhoto from '../../assets/matan.jpg'
+import matanPhoto from '../../../assets/matan.jpg'
 const AboutWindow = () => {
     return ( 
         <>

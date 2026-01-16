@@ -1,16 +1,12 @@
-import ResumeWindow from "./components/windows/ResumeWindow";
-import WorkWindow from "./components/windows/WorkWindow";
-import BlogWindow from "./components/windows/BlogWinodw";
-import TestimonialsWindow from "./components/windows/TestimonialsWindow";
-import AboutWindow from "./components/windows/AboutWindow";
-import ExperienceWindow from "./components/windows/ExperienceWindow";
-import ProjectsWindow from "./components/windows/ProjectsWindow";
-import ProjectLearningWindow from "./components/windows/ProjectLearningWindow";
-import FAQWindow from "./components/windows/FAQWindow";
+    import BlogWindow from "./components/windows/blog/BlogWinodw";
+import TestimonialsWindow from "./components/windows/testimonials/TestimonialsWindow";
+import AboutWindow from "./components/windows/about/AboutWindow";
+import ExperienceWindow from "./components/windows/experience/ExperienceWindow";
+import ProjectsWindow from "./components/windows/projects/ProjectsWindow";
+import ProjectLearningWindow from "./components/windows/projects/ProjectLearningWindow";
+import FAQWindow from "./components/windows/FAQ/FAQWindow";
 const windowRegistry  = {
     "about": AboutWindow,
-    "resume": ResumeWindow,
-    "work": WorkWindow,
     "blog": BlogWindow,
     "testimonials": TestimonialsWindow,
     "experience": ExperienceWindow,

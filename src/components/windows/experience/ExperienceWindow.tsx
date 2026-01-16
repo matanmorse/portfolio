@@ -1,5 +1,5 @@
 import './ExperienceWindow.css'
-import './Window.css'
+import '../Window.css'
 const ExperienceWindow = () => {
     return (
         <>

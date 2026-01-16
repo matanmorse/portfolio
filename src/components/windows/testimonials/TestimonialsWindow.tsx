@@ -1,4 +1,4 @@
-import './Window.css'
+import '../Window.css'
 import './TestimonalsWindow.css'
 const TestimonialsWindow = () => {
     return ( 
