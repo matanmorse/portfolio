@@ -9,13 +9,14 @@ interface WindowLayoutProps {
     placeholderRefs: React.RefObject<HTMLDivElement[]>,
     windowId: string,
     isFullscreen: boolean,
-    setPos: ({x, y}: {x: number, y: number}) => void
+    setPos: ({x, y}: {x: number, y: number}) => void,
+    pos: {x: number, y: number},
     setSize: ({width, height} : {width: number, height: number}) => void
     maximizeAllWindows: () => void,
     layoutToggle: boolean,
 }
 
-export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows, layoutToggle} : WindowLayoutProps) {
+export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, layoutToggle} : WindowLayoutProps) {
     const [inLayout, setInLayout]= useState(false)
     const [isLoadingLayout, setIsLoadingLayout] = useState(true)
     const [scaleTick, setScaleTick] = useState(0);
@@ -92,6 +93,7 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
         rafId = null
         setLayoutRect(getLayoutRect())
         setScaleTick(t => t + 1)
+        setPos(pos);
         })
     }
 

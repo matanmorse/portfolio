@@ -10,7 +10,7 @@ const NewLayout : WindowLayout = {
         },
         'projects': {
             position: 0,
-            size: {x: 1000, y: 875},
+            size: {x: 1000, y: 800},
             offset: {x: 100, y: 50}
         },
         // pbl= project-based-learning

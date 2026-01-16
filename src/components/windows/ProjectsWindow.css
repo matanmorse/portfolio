@@ -61,6 +61,7 @@
     margin-bottom: var(--pm-xsm)
 }
 .project {
+    width: 100%;
     background-color: rgba(255,255,255,0.1);
     mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
     border: 3px solid var(--background);
@@ -80,9 +81,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 
 }
+
+.window#projects:has(.projects-carousel) {
+    height: fit-content !important;
+}
+.window#projects:has(.projects-carousel) > .window-content-wrapper {
+    overflow:visible !important;
+}
+
 .project-title:hover {
     color: inherit;
 }
@@ -91,6 +99,9 @@
     max-width: 950px;
 }
 .project-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding-left: var(--pm-sm);
     padding-right: var(--pm-sm);
     padding-top: 10px;
@@ -98,7 +109,7 @@
     width: 100%;
 }
 .project-summary {
-    font-size: 1rem;
+    font-size: 2vh;
     margin-bottom: var(--pm-xsm) !important;
     color: var(--on-surface-muted)
 }
@@ -117,9 +128,11 @@
 
 .project-content {
     overflow: auto;
-    min-height: max-content;
 }
 
+.project-title {
+    font-size: 3vh;
+}
 .carousel-dots {
   display: flex;
   justify-content: center;
@@ -146,7 +159,7 @@
 }
 
 .skill {
-    font-size: 12pt;
+    font-size: 2vh;
     border: none;
     padding-left: var(--pm-xsm);
     padding-right: var(--pm-xsm);

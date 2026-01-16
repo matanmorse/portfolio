@@ -33,9 +33,10 @@ const GenericWindow =
     const setPos = ({ x, y }: { x: number; y: number }) => {
         setPosDontUse({
             x: Math.min(window.innerWidth - 50, Math.max(0,Math.round(x))),
-            y: Math.min(window.innerHeight - 50, Math.max(0, Math.round(y))),
+            y: Math.min(window.innerHeight - size.height, Math.max(0, Math.round(y))),
         })
     }
+
     const { isDragging, onMouseDown, onMouseUp, onMouseMove } = useDraggable({pos, setPos})
     
     const { size, isFullscreen, setIsFullscreen, savePos, setSize } = useFullscreen({
@@ -48,7 +49,7 @@ const GenericWindow =
         layout
     })
 
-    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, setSize, maximizeAllWindows, layoutToggle})
+    const {isLoadingLayout} = useWindowLayout({layout, placeholderRefs, windowId, isFullscreen, setPos, pos, setSize, maximizeAllWindows, layoutToggle})
     
     const onMaximize = () => { if (!isFullscreen) minimizeAllExceptThis(windowId); setIsFullscreen(!isFullscreen) }
     const onMinimize = () => { savePos(); minimizeWindow(windowId) }

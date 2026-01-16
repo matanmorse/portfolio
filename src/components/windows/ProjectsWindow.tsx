@@ -172,7 +172,6 @@ const ProjectsWindow = ({lockedType='', carousel=false}:ProjectsWindowProps) => 
             <button className="carousel-button left" onClick={prev}>&lt;</button>
             {current && <Project {...current} />}
             <button className="carousel-button right" onClick={next}>&gt;</button>
-            
         </div>
         <div className="carousel-dots">
             {projects && projects.map((_, i) => (
