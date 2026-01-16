@@ -1,0 +1,37 @@
+.blog-post {
+    padding: 0.5rem;
+    background-color: var(--surface-active);
+    transition: 0.2s all;
+}
+
+.blog-post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.blog-post:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.blog-post-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+    text-decoration: underline;
+}
+
+.blog-post-content-preview > * {
+    font-size: 1.25rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.blog-post-date {
+    font-size: 1rem;
+    color: var(--on-surface-muted);
+}
+
+

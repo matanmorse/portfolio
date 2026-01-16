@@ -72,6 +72,12 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
     useEffect(() => {
         if (!hasLayoutEntry()) return
         const offset = getLayoutOffset()
+
+        // kinda hacky, but prevent windows from going offscreen when resizing
+        if(layoutRect.y + offset.y > window.innerHeight - getLayoutSize().height - 80) {
+            offset.y = window.innerHeight - getLayoutSize().height - layoutRect.y - 80
+        }
+        
         setPos({x: layoutRect.x + offset.x, y: layoutRect.y + offset.y})
         setSize(getLayoutSize())
     }, [layoutRect, layoutToggle, scaleTick])

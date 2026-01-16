@@ -6,6 +6,11 @@
   /* background-image: url('../assets/background.jpg'); */
 }
 
+.pixel-border {
+    mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
+    border: 3px solid var(--background);
+}
+
 h1 {
   margin-bottom: min(3rem, 1vw);
 }
