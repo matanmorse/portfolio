@@ -26,7 +26,6 @@ export function useFullscreen({maxWindowRef, isOpen, windowId, promoteZIndex, se
     const goToBottomLeft = () => setPos({ x: 0, y: window.innerHeight - 200 });
 
     useEffect(() => {
-        console.log('hit thingy')
         if (!isOpen) {
             savePos()
             goToBottomLeft();

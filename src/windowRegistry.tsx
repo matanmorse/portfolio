@@ -30,5 +30,4 @@ const windowRegistry = {
     ...derivedRegisry
 }
 
-console.log(windowRegistry);
 export default windowRegistry

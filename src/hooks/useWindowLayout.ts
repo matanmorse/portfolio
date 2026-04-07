@@ -29,7 +29,7 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
         if (!hasLayoutEntry()) return new DOMRect(-1,-1,-1,-1)
         const position = layout.layout[windowId].position
         const placeHolderRef = placeholderRefs.current[position]
-        if (!placeHolderRef) return new DOMRect(1000,1000,-1,-1)
+        if (!placeHolderRef) return new DOMRect(0,window.innerHeight,-1,-1)
         return placeHolderRef.getBoundingClientRect() 
     }
 
@@ -54,8 +54,13 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
 
     useLayoutEffect(() => {
         setInLayout(hasLayoutEntry())
-        setLayoutRect(getLayoutRect())
-        setTimeout(() => setIsLoadingLayout(false), 1)
+
+        const raf = requestAnimationFrame(() => {
+            setLayoutRect(getLayoutRect())
+            setIsLoadingLayout(false)
+        })
+
+        return () => cancelAnimationFrame(raf)
     }, [layout])
 
     const [layoutRect, setLayoutRect] = useState<DOMRect>(getLayoutRect())
@@ -67,7 +72,6 @@ export function useWindowLayout({layout, placeholderRefs, windowId, isFullscreen
 
         // kinda hacky, but prevent windows from going offscreen when resizing
         if(hasLayoutEntry() && layoutRect.y + offset.y > window.innerHeight - getLayoutSize().height - 20) {
-            console.log('adjusting y offset')
             offset.y = window.innerHeight - getLayoutSize().height - layoutRect.y - 80
         }
         
