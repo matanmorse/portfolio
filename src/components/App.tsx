@@ -70,10 +70,10 @@ function App() {
       <WindowContext.Provider value={{openWindow, closeWindow, minimizeWindow, isWindowOpen, isWindowMinimized}}>
         <div className="desktop-container">
           <Desktop fullscreenPlaceholderRef={maxWindowRef}>
-            <Icon opens={HomeLayout} title="Home" imgName="react.svg" changeLayout={onLayoutChange}/>
-            <Icon opens={WorkLayout} title="Work" imgName="react.svg" changeLayout={onLayoutChange} />
-            <Icon opens={AboutLayout} title="About" imgName="react.svg" changeLayout={onLayoutChange} />
-            <Icon opens={BlogLayout} title="Blog" imgName="react.svg" changeLayout={onLayoutChange} />
+            <Icon opens={HomeLayout} title="Home" iconName="hn-home" color="#d6618a" changeLayout={onLayoutChange}/>
+            <Icon opens={WorkLayout} title="Work" iconName="hn-code" color="#ff9c5f" changeLayout={onLayoutChange} />
+            <Icon opens={AboutLayout} title="About" iconName="hn-user" color="#55beff" changeLayout={onLayoutChange} />
+            <Icon opens={BlogLayout} title="Blog" iconName="hn-pen-nib" color="#cf455f" changeLayout={onLayoutChange} />
           </Desktop>
           <WindowManager
           layout={layout}

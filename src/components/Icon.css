@@ -5,15 +5,15 @@
     text-align: center;
     font-weight: bold;
     align-items: center;
+
 }
 
 .icon:hover {
     cursor: pointer;
 }
 
-.icon img {
-    width: clamp(16px, 10vw, 48px);
-    height: clamp(16px, 10vw, 48px);
+.icon i {
+    font-size: clamp(16px, 10vw, 48px);
     margin-bottom: 2px;
 }
 
