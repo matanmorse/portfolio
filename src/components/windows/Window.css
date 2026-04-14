@@ -6,6 +6,7 @@
     border-radius: 4px;
     padding: 4px;
     mask: conic-gradient(at var(--border-thickness) var(--border-thickness), #000 270deg, rgba(0, 0, 0, 0) 0) 0 0 / calc(100% - var(--border-thickness)) calc(100% - var(--border-thickness));
+    height: fit-content;
 }
 
 .window-content-wrapper {

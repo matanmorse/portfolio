@@ -5,7 +5,7 @@ const AboutLayout : WindowLayout = {
 	layout: {
 		'frequently asked questions': {
 			position: 1,
-			size: {x:1000,y:1000},
+			size: {x:1000,y:950},
 			offset: {x:0, y:0}
 		},
 		'testimonials': {

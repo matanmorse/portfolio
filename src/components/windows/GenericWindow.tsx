@@ -65,7 +65,7 @@ const GenericWindow =
             + (!isDragging ? 'do-transition ' : '') 
             + (isFullscreen && 'fullscreen' )} 
             onMouseDown={() => promoteZIndex(windowId)}
-            style={{left: pos.x, top: pos.y, width: size.width, height: size.height, zIndex: zIndex}} 
+            style={{left: pos.x, top: pos.y, zIndex: zIndex}} 
             id={windowId}
         >
             <div className="draggable-area" 
@@ -79,7 +79,7 @@ const GenericWindow =
                     onMaximize={onMaximize}
                 />
             </div>
-                <div className="window-content-wrapper">
+                <div className="window-content-wrapper" style={{width: size.width, maxHeight: size.height}}>
                     <div className="window-content">
                         {content}
                     </div>
