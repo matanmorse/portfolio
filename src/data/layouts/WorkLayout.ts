@@ -1,6 +1,6 @@
 import type { WindowLayout } from "../../types/LayoutTypes";
 
-const NewLayout : WindowLayout = {
+const WorkLayout : WindowLayout = {
     title: "Work",
     layout: {
         'experience': {
@@ -22,4 +22,4 @@ const NewLayout : WindowLayout = {
     }
 }
 }
-export default NewLayout;
+export default WorkLayout;

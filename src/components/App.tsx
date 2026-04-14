@@ -12,6 +12,7 @@ import AboutLayout from '../data/layouts/AboutLayout'
 import BlogLayout from '../data/layouts/BlogLayout'
 
 import { WindowContext } from '../contexts/WindowContext'
+import AckLayout from '../data/layouts/AckLayout'
 
 function App() {
   const DEFAULT_LAYOUT = HomeLayout
@@ -79,6 +80,7 @@ function App() {
             <Icon opens={WorkLayout} title="Work" iconName="hn-code" color="#ff9c5f" changeLayout={onLayoutChange} />
             <Icon opens={AboutLayout} title="About" iconName="hn-user" color="#55beff" changeLayout={onLayoutChange} />
             <Icon opens={BlogLayout} title="Blog" iconName="hn-pen-nib" color="#cf455f" changeLayout={onLayoutChange} />
+            <Icon opens={AckLayout} title="Thanks" iconName="hn-heart" color="#ff5f87" changeLayout={onLayoutChange} />
           </Desktop>
           <WindowManager
           layout={layout}

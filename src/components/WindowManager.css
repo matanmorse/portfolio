@@ -4,7 +4,7 @@
     grid-template-columns: repeat(2, min(1200px, 50%));
     grid-template-rows: 100px 300px 300px;
     gap: 10px;
-    margin-left: clamp(10px, 4vw, 2rem);
+    margin-left: 0rem;
 }
 
 @media (max-width: 1080px) {
