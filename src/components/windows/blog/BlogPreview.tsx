@@ -11,21 +11,20 @@ const BlogPreview = ({post}: BlogPreviewProps) => {
     return (
          <div key={post.id} onClick={() => {
             if (isMobileMode) {
-                console.log('mobile open')
                 // mobile behavior: close all windows and open this one
                 Object.keys(windowRegistry).forEach(windowId => {
                     console.log(windowId);
-                    if (windowId === post.title) return
+                    if (windowId === post.id) return
                     closeWindow(windowId)
                 });
-                openWindow(post.title);
+                openWindow(post.id);
             }
             else {
-                if (!isWindowOpen(post.title) || isWindowMinimized(post.title)) {
-                    openWindow(post.title);
+                if (!isWindowOpen(post.id) || isWindowMinimized(post.id)) {
+                    openWindow(post.id);
                 }
                 else {
-                    closeWindow(post.title);
+                    closeWindow(post.id);
                 }
             }
 

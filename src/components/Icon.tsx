@@ -1,19 +1,18 @@
-import type { WindowLayout } from '../types/LayoutTypes';
+import { useNavigate } from 'react-router-dom';
 import './Icon.css';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 interface IconProps {
-    opens: WindowLayout,
+    opens: string,
     title: string,
     iconName: string,
-    changeLayout: (layout: WindowLayout) => void,
     color?: string,
 }
 
-const Icon = ({opens, title, iconName, changeLayout, color} : IconProps) => {
-
+const Icon = ({opens, title, iconName, color} : IconProps) => {
+    const navigate = useNavigate();
     return (
-    <div className="icon" onClick={() => changeLayout(opens)}>
+    <div className="icon" onClick={() => navigate(opens)}>
         <i className={`hn ${iconName}`} style={{color: color}}></i>
         {title}
     </div>

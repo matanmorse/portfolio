@@ -12,7 +12,7 @@ import NicchanWindow from "./components/windows/acks/NicchanWindow";
 
 const derivedRegisry = Object.fromEntries(
     blogPosts.map(post => [
-        post.title, post.content
+        post.id, post.content
     ])
 )
 

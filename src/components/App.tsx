@@ -7,13 +7,10 @@ import './App.css'
 import { useEffect, useRef, useState } from 'react'
 import HomeLayout from '../data/layouts/HomeLayout'
 import type { WindowLayout } from '../types/LayoutTypes'
-import WorkLayout from '../data/layouts/WorkLayout'
-import AboutLayout from '../data/layouts/AboutLayout'
-import BlogLayout from '../data/layouts/BlogLayout'
 
 import { WindowContext } from '../contexts/WindowContext'
-import AckLayout from '../data/layouts/AckLayout'
 import useIsMobile from '../hooks/useMobile'
+import useRouteLayout from '../hooks/useRouteLayout'
 
 function App() {
   const DEFAULT_LAYOUT = HomeLayout
@@ -24,13 +21,13 @@ function App() {
   const [layout, setLayout] = useState<WindowLayout>(DEFAULT_LAYOUT)
   const [layoutToggle, setLayoutToggle] = useState(false)
   const isMobile = useIsMobile();
+  const {layout: routeLayout} = useRouteLayout();
 
   const isWindowOpen = (windowId: string) => openWindows.includes(windowId)
 
   const isWindowMinimized = (windowId: string) => minimizedWindows.includes(windowId)
 
   const closeWindow = (windowId: string) => {
-    console.log("closing " + windowId);
 
     setOpenWindows(prev =>
       prev.filter(id => id !== windowId)
@@ -73,23 +70,21 @@ function App() {
       setMinimizedWindows([])
   }
 
-useEffect(() => {
-  if (!isMobile) {
-    setTimeout(() => {
-      onLayoutChange(layout)
-    }, 1000);
-  }
-}, [isMobile])
+  useEffect(() => {
+    if (routeLayout) {
+      onLayoutChange(routeLayout)
+    }
+  }, [routeLayout])
 
   return (
       <WindowContext.Provider value={{openWindow, closeWindow, minimizeWindow, isWindowOpen, isWindowMinimized, isMobileMode: isMobile, onLayoutChange}}>
         <div className="desktop-container">
           <Desktop fullscreenPlaceholderRef={maxWindowRef}>
-            <Icon opens={HomeLayout} title="Home" iconName="hn-home" color="#d6618a" changeLayout={onLayoutChange}/>
-            <Icon opens={WorkLayout} title="Work" iconName="hn-code" color="#ff9c5f" changeLayout={onLayoutChange} />
-            <Icon opens={AboutLayout} title="About" iconName="hn-user" color="#55beff" changeLayout={onLayoutChange} />
-            <Icon opens={BlogLayout} title="Blog" iconName="hn-pen-nib" color="#cf455f" changeLayout={onLayoutChange} />
-            <Icon opens={AckLayout} title="Thanks" iconName="hn-heart" color="#ff5f87" changeLayout={onLayoutChange} />
+            <Icon opens={'/'} title="Home" iconName="hn-home" color="#d6618a" />
+            <Icon opens={'/projects'} title="Work" iconName="hn-code" color="#ff9c5f"  />
+            <Icon opens={'/about'} title="About" iconName="hn-user" color="#55beff"  />
+            <Icon opens={'/blog'} title="Blog" iconName="hn-pen-nib" color="#cf455f"  />
+            <Icon opens={'/acknowledgements'} title="Thanks" iconName="hn-heart" color="#ff5f87" />
           </Desktop>
           <WindowManager
           layout={layout}
