@@ -4,19 +4,19 @@ const Layout : WindowLayout = {
     title: "Home",
     layout: {
         'about': {
-            position: 2,
+            position: 3,
             size: {x: 1100, y:950},
             offset: {x: -150, y:0}
         },
         'projects': {
-            position: 1,
+            position: 2,
             size: {x: 1000, y: 430},
             offset: {x: 0, y: 0},
             props: {lockedType: 'featured', carousel: true},
             title: 'Featured Projects'
         },
         'blog': {   
-            position: 3,
+            position: 4,
             size: {x: 1000, y: 500},
             offset: {x:0,y:0}
         }

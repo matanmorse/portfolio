@@ -4,12 +4,12 @@ const AboutLayout : WindowLayout = {
 	title: "About",
 	layout: {
 		'frequently asked questions': {
-			position: 1,
+			position: 2,
 			size: {x:1000,y:950},
 			offset: {x:0, y:0}
 		},
 		'testimonials': {
-			position: 2,
+			position: 3,
 			size: {x:1000,y:1000},
 			offset: {x:0, y:-100}
 		}

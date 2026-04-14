@@ -4,6 +4,7 @@ import GenericWindow from "./windows/GenericWindow";
 import windowRegistry from "../windowRegistry.tsx";
 import type { WindowLayout } from "../types/LayoutTypes";
 import MobileWindow from "./windows/MobileWindow";
+import { UseWindowContext } from "../contexts/WindowContext.tsx";
 
 interface WindowManagerProps {
     openWindows: string[],
@@ -20,7 +21,7 @@ interface WindowManagerProps {
 const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onChangeLayout, minimizeWindow, maximizeWindow, closeWindow, layoutToggle} : WindowManagerProps) => {
     const placeholderRefs = useRef<HTMLDivElement[]>([]);
     const [z_indexes, setZIndexes] = useState<{ [key: string]: number }>({});
-
+    const {isMobileMode} = UseWindowContext();
     const minimizeAllExceptThis = (thisWindow: string) => {
         Object.entries(windowRegistry).forEach(entry => {
             const windowId = entry[0]
@@ -73,9 +74,12 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
     useEffect(() => {
         onChangeLayout(layout)
     }, [])
-    if (window.innerWidth >= 1080)
+
+
+    if (!isMobileMode)
     return (<div className="window-manager">
         <h1>{layout.title}</h1>
+        {(() => { placeholderRefs.current = [] })()}
         {Object.entries(windowRegistry).map(([windowId, WindowComponent]) => (
             <>
                 {/* @ts-ignore */}

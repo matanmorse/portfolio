@@ -4,7 +4,7 @@ import WindowManager from './WindowManager'
 
 import Icon from './Icon'
 import './App.css'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import HomeLayout from '../data/layouts/HomeLayout'
 import type { WindowLayout } from '../types/LayoutTypes'
 import WorkLayout from '../data/layouts/WorkLayout'
@@ -13,6 +13,7 @@ import BlogLayout from '../data/layouts/BlogLayout'
 
 import { WindowContext } from '../contexts/WindowContext'
 import AckLayout from '../data/layouts/AckLayout'
+import useIsMobile from '../hooks/useMobile'
 
 function App() {
   const DEFAULT_LAYOUT = HomeLayout
@@ -22,7 +23,7 @@ function App() {
   const maxWindowRef = useRef<HTMLDivElement | null>(null);
   const [layout, setLayout] = useState<WindowLayout>(DEFAULT_LAYOUT)
   const [layoutToggle, setLayoutToggle] = useState(false)
-  const [isMobileMode] = useState(window.innerWidth < 1024);
+  const isMobile = useIsMobile();
 
   const isWindowOpen = (windowId: string) => openWindows.includes(windowId)
 
@@ -64,7 +65,7 @@ function App() {
   }
 
   const onLayoutChange = (layout: WindowLayout) => {
-      setLayoutToggle(!layoutToggle) // force windows to conform to layout, even if the layout doesn't actually change
+      setLayoutToggle(prev => !prev) // force windows to conform to layout, even if the layout doesn't actually change
       const windowsInLayout : string[] = Object.keys(layout.layout)
 
       setLayout(layout)
@@ -72,8 +73,16 @@ function App() {
       setMinimizedWindows([])
   }
 
+useEffect(() => {
+  if (!isMobile) {
+    setTimeout(() => {
+      onLayoutChange(layout)
+    }, 1000);
+  }
+}, [isMobile])
+
   return (
-      <WindowContext.Provider value={{openWindow, closeWindow, minimizeWindow, isWindowOpen, isWindowMinimized, isMobileMode, onLayoutChange}}>
+      <WindowContext.Provider value={{openWindow, closeWindow, minimizeWindow, isWindowOpen, isWindowMinimized, isMobileMode: isMobile, onLayoutChange}}>
         <div className="desktop-container">
           <Desktop fullscreenPlaceholderRef={maxWindowRef}>
             <Icon opens={HomeLayout} title="Home" iconName="hn-home" color="#d6618a" changeLayout={onLayoutChange}/>
