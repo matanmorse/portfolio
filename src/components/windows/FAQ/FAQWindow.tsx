@@ -1,5 +1,8 @@
+import { UseWindowContext } from '../../../contexts/WindowContext'
+import NewLayout from '../../../data/layouts/WorkLayout';
 import './FAQWindow.css'
 const FAQWindow = () => {
+	const {onLayoutChange} = UseWindowContext();
 	return (
 		<>
 			<h4 className="question-title">Where am I?</h4>
@@ -23,7 +26,12 @@ const FAQWindow = () => {
 			</p>
 			<h4 className="question-title">What technologies do you like working with?</h4>
 			<p>&emsp; Excellent question! I've worked with a lot of languages and tools, but the better part of my experience
-				is with web technologies. You can look at my <a href="">projects</a> page to see some of the things I've used, but I really 
+				is with web technologies. You can look at my <a href="" onClick={(e) => {
+					e.preventDefault();
+					onLayoutChange(NewLayout);
+				}}>
+				projects
+				</a> page to see some of the things I've used, but I really 
 				pride myself on being able to learn new techs quickly.
 			</p>
 			<h4 className="question-title">Your career aspirations?</h4>
@@ -32,7 +40,7 @@ const FAQWindow = () => {
 				design and implementation.
 			</p>
 			<h4 className="question-title">Can I contact you?</h4>
-			<p>&emsp; <a href="">Yes!</a> Please reach out with opportunities, questions, or just to chat.
+			<p>&emsp; <a href="mailto:matanmorse@gmail.com">Yes!</a> Please reach out with opportunities, questions, or just to chat.
 			</p>
 			<hr></hr>
 			

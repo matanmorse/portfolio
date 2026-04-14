@@ -10,7 +10,7 @@ const BlogLayout : WindowLayout = {
         },
         'tip: blogs': {
             position: 2,
-            size: {x: 500, y: 350},
+            size: {x: 500, y: 400},
             offset: {x: 50, y: 100}
         }
     }

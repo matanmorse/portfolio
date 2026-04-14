@@ -72,18 +72,20 @@ const ProjectsWindow = ({lockedType='', carousel=false}:ProjectsWindowProps) => 
     else return(
         <>
         <div className="projects-carousel">
-            <button className="carousel-button left" onClick={prev}>&lt;</button>
             {current && <Project {...current} />}
-            <button className="carousel-button right" onClick={next}>&gt;</button>
         </div>
-        <div className="carousel-dots">
-            {projects && projects.map((_, i) => (
-                <span
-                key={i}
-                className={i === index ? "dot active" : "dot"}
-                onClick={() => setIndex(i)}
-                />
-            ))}
+            <div className="carousel-control">
+                <button className="carousel-button left" onClick={prev}><i className="hn hn-arrow-left-solid"></i></button>
+                <div className="carousel-dots">
+                {projects && projects.map((_, i) => (
+                    <span
+                    key={i}
+                    className={i === index ? "dot active" : "dot"}
+                    onClick={() => setIndex(i)}
+                    />
+                ))}
+                </div>
+                <button className="carousel-button right" onClick={next}><i className="hn hn-arrow-right-solid"></i></button>
             </div>
         </>
     )

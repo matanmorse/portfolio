@@ -111,7 +111,7 @@ const WindowManager = ({openWindows, minimizedWindows, maxWindowRef, layout, onC
             <h1>{layout.title}</h1>
             {Object.entries(windowRegistry).map(([windowId, WindowComponent]) => (
                 <MobileWindow
-                    isOpen={!Object.keys(layout.layout).includes(windowId)}
+                    isOpen={openWindows.includes(windowId)}
                     content={<WindowComponent
                         {...(layout.layout[windowId]??"{}").props} />}
                     windowId={windowId}

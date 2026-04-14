@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import type { WindowLayout } from "../types/LayoutTypes";
 
 type WindowContextType = { 
     openWindow: (id: string) => void;
@@ -6,6 +7,8 @@ type WindowContextType = {
     minimizeWindow: (id: string) => void;  
     isWindowOpen: (id: string) => boolean;
     isWindowMinimized: (id: string) => boolean; 
+    onLayoutChange: (layout: WindowLayout) => void;
+    isMobileMode: boolean;
 }
 
 export const WindowContext = createContext<WindowContextType | null>(null);

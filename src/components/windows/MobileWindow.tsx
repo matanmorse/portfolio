@@ -9,7 +9,7 @@ interface MobileWindowProps {
 
 const MobileWindow = ({content, windowId, isOpen} : MobileWindowProps) => {
     return (
-        <div className={"window mobile pixel-border " + (isOpen ? "display-none" : "")}>
+        <div className={"window mobile pixel-border " + (isOpen ? "" : "display-none")}>
             <div className="draggable-area">
                 <WindowControls
                         windowTitle={windowId.charAt(0).toLocaleUpperCase() + windowId.slice(1)}

@@ -2,6 +2,7 @@
   font-family: w95fa;
   src: url('./assets/fonts/W95FA.otf');
 }
+
 :root {
   font-family: "w95fa", sans-serif;
   line-height: 1.5;
@@ -44,6 +45,10 @@
   --pm-md: 3rem;
   --pm-sm: 1rem;
   --pm-xsm: 0.5rem;
+
+  --text-lg: clamp(20px, 1rem + 2vw, 30px);
+  --text-md: clamp(16px, 1rem + 0.4vw, 22px);
+  --text-sm: clamp(12px, 1rem + 0.2vw, 16px);
 }
 
 a {
@@ -55,6 +60,34 @@ a:hover {
   color: #535bf2;
 }
 
+/* 1. The overall width/height of the scrollbar */
+::-webkit-scrollbar {
+    width: 15px; /* Increase width for a chunkier look */
+    height: 15px;
+}
+
+/* 2. The scrollbar track (the background channel) */
+::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.3); /* Light gray background */
+}
+
+/* 3. The scrollbar thumb (the draggable element) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--on-surface-muted); /* Classic medium gray */
+    border: 2px solid var(--background); /* Light border on top/left for 3D bevel */
+}
+
+/* 4. Thumb hover state */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,0.2); /* Slightly darker when hovered */
+}
+
+/* 5. Scrollbar corners (the intersection of vertical and horizontal scrollbars) */
+::-webkit-scrollbar-corner {
+    background-color: #C0C0C0;
+    border-top: 1px solid #999999;
+    border-left: 1px solid #999999;
+}
 
 button.selected {
   background-color: var(--surface-active);
@@ -84,21 +117,15 @@ button {
   background-color: var(--background-alt);
 }
 
-
-
 .desktop-container {
   display: grid;
-  grid-template-columns: 75px 1px auto;
+  grid-template-columns: 50px 1px auto;
   grid-template-rows: 1fr;
   margin-bottom: 10vh;
+  padding-top: 1rem;
 }
 
 * {
    color: var(--text-primary);
 }
 
-@media (max-width: 1080px) {
-  #root {
-    overflow-y: auto;
-  }
-}

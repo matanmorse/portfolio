@@ -14,15 +14,22 @@
 h1 {
   margin-bottom: min(3rem, 1vw);
 }
+
 body {
   background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
   url('../assets/background6.png');
   background-size:cover;
   background-position: center; 
   width: 100vw;
+  font-size: var(--text-md);
 }
 
 p, div, li {
   color: rgba(255,255,255,0.85);
-  font-size: 16pt;
+}
+
+@media (max-width: 1080px) {
+  #root {
+    overflow-y: auto;
+  }
 }

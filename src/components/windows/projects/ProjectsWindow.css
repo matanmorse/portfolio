@@ -116,13 +116,24 @@
 
 .projects-carousel {
     display: flex;
-    flex-direction: row;
     align-items: stretch;
     justify-content: center;
     height: 20vh;
     width: 35vw;
     margin-left: auto ;
     margin-right: auto;
+}
+
+.carousel-control
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+.carousel-button {
+    font-size: var(--text-sm);
 }
 
 
@@ -172,7 +183,7 @@ img.project-image {
 }
 
 .project-image, img.project-image {
-    flex: 0 0 max(150px, 25%);
+    width: 300px;
     background-size: cover;
     background-position: center;
 }
@@ -335,6 +346,7 @@ img.project-image {
 
     .project-image {
         width: 100%;
+        height: clamp(200px, 30vh, 300px);
         position: relative;
         text-align: center;
         max-width: none;
@@ -352,5 +364,9 @@ img.project-image {
         flex-direction: column;
         margin-bottom: var(--pm-xsm);
         align-items: flex-start;
+    }
+    .projects-carousel {
+        height: fit-content;
+        width: 100%;
     }
 }
