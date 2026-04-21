@@ -7,7 +7,7 @@ import ProjectLearningWindow from "./components/windows/projects/ProjectLearning
 import FAQWindow from "./components/windows/FAQ/FAQWindow";
 import BlogTipWindow from "./components/windows/tips/BlogTipWindow";
 import blogPosts from "./data/blogposts";
-import ArtWindow from "./components/windows/acks/ArtWindow";
+import MiscWindow from "./components/windows/acks/MiscWindow";
 import NicchanWindow from "./components/windows/acks/NicchanWindow";
 
 const derivedRegisry = Object.fromEntries(
@@ -25,8 +25,8 @@ const manualRegistry  = {
     "project based learning": ProjectLearningWindow,
     "frequently asked questions": FAQWindow,
     "tip: blogs": BlogTipWindow,
-    "art": ArtWindow,
-    "nicchan": NicchanWindow,
+    "misc": MiscWindow,
+    "nicchan": NicchanWindow
 }
 
 const windowRegistry = {

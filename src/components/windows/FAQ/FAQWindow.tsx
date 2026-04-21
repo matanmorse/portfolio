@@ -1,8 +1,7 @@
-import { UseWindowContext } from '../../../contexts/WindowContext'
-import WorkLayout from '../../../data/layouts/WorkLayout';
+import { useNavigate } from 'react-router-dom';
 import './FAQWindow.css'
 const FAQWindow = () => {
-	const {onLayoutChange} = UseWindowContext();
+	const navigate = useNavigate();
 	return (
 		<>
 			<h4 className="question-title">Where am I?</h4>
@@ -28,7 +27,7 @@ const FAQWindow = () => {
 			<p>&emsp; Excellent question! I've worked with a lot of languages and tools, but the better part of my experience
 				is with web technologies. You can look at my <a href="" onClick={(e) => {
 					e.preventDefault();
-					onLayoutChange(WorkLayout);
+					navigate('/projects');
 				}}>
 				projects
 				</a> page to see some of the things I've used, but I really 

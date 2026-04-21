@@ -1,5 +1,4 @@
 import type { JSX } from "react";
-import MakingThisWebsite from "./posts/MakingThisWebsite";
 
 type Blog = {
     id: string;
@@ -11,14 +10,6 @@ type Blog = {
 }
 
 const blogPosts: Blog[] = [
-    {
-        id: "making-this-website",
-        title: "Making This Website",
-        date: new Date("2024-06-01"),
-        byline: "A behind-the-scenes look at how I built this portfolio website from scratch.",
-        content: MakingThisWebsite,
-    tags: ["web development", "react", "typescript"]
-    }
 ];
 
 export default blogPosts;

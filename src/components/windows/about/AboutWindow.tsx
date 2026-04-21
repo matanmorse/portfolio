@@ -1,6 +1,6 @@
 import '../Window.css'
 import './AboutWindow.css'
-import matanPhoto from '../../../assets/matan.jpg'
+import matanPhoto from '../../../assets/matan.jpeg'
 const AboutWindow = () => {
     return ( 
         <>
@@ -9,13 +9,13 @@ const AboutWindow = () => {
 
         <div className="portrait-container">
         <img src={matanPhoto} className="portrait" />
-        <p className="portrait-caption">Me at UVA's "lighting of the lawn"</p>
+        <p className="portrait-caption">Me on a visit to the Tennessee River</p>
         </div>
 
         <p className="about-text">
-        I build things that sit at the intersection of software, math, and design. I care about how systems work under the hood, but I care just as much about how they feel to use. Most of my projects start with a question like “What happens if I try this?” and turn into something practical, weird, or unexpectedly useful.
+        I'm a software engineer who loves building things. I've been programming for almost 7 years, and I've worked on a wide range of projects, from small personal projects to large-scale applications. I enjoy learning new technologies and experimenting with different ideas, which is what this portfolio is all about. 
         </p>
-        <p className="about-text">You'll find a mix of experiments, polished projects, and half-serious ideas that got a little too serious. Some are about solving real problems, some are about learning by building, and some are just because they sounded fun.</p>
+        <p className="about-text">On this site, you'll find information about me as a person and as a professional, along with blog posts and projects I've chosen to showcase. Some are about solving real problems, some are about learning by building, and some are just because they sounded fun.</p>
 
         <p className="about-text">If something here makes you curious, confused, or excited, it did its job. Welcome to my portfolio 😊​</p>
         </>

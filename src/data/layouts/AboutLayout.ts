@@ -12,7 +12,7 @@ const AboutLayout : WindowLayout = {
 			position: 3,
 			size: {x:1000,y:1000},
 			offset: {x:0, y:-100}
-		}
+		},
 	}
 }
 

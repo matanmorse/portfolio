@@ -97,7 +97,7 @@
 }
 
 .started-2nd-year::before {
-     content: "Started 2nd Year";    
+     content: "Started Sophmore Year at UVA";    
 }
 
 .started-3rd-year {
@@ -105,7 +105,7 @@
 }
 
 .started-3rd-year::before {
-    content: "Started 3rd Year"
+    content: "Started Junior Year at UVA"
 }
 
 .start-2025 {
@@ -133,4 +133,9 @@ ul {
 
 .experience-title {
     text-align: center;
+}
+
+.coming-soon {
+    text-align: center;
+    font-size: var(--text-sm);
 }

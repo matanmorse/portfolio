@@ -5,6 +5,7 @@ const ExperienceWindow = () => {
         <>
             <h4 className="experience-title">A brief timeline of some of my professional work and my proudest achievments in each </h4>
             <hr></hr>
+            <p className="coming-soon">Coming soon: Software Intern @ <a href="https://www.costar.com/" target="_blank" rel="noopener noreferrer">CoStar</a>!</p>
             <h5 className="date-today">Today</h5>
             <div className="work-timeline">
                 <div className="timeline-line">

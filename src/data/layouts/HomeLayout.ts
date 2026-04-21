@@ -6,7 +6,7 @@ const Layout : WindowLayout = {
         'about': {
             position: 3,
             size: {x: 1100, y:950},
-            offset: {x: -150, y:0}
+            offset: {x: -125, y:0}
         },
         'projects': {
             position: 2,
@@ -18,7 +18,7 @@ const Layout : WindowLayout = {
         'blog': {   
             position: 4,
             size: {x: 1000, y: 500},
-            offset: {x:0,y:0}
+            offset: {x:0,y:40}
         }
     }
 }
