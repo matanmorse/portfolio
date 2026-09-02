@@ -101,11 +101,19 @@
 }
 
 .started-3rd-year {
-    top: 30%;
+    top: 40%;
 }
 
 .started-3rd-year::before {
     content: "Started Junior Year at UVA"
+}
+
+.started-4th-year {
+    top: 1%;
+}
+
+.started-4th-year::before {
+    content: "Started Senior Year at UVA"
 }
 
 .start-2025 {
@@ -117,7 +125,7 @@
 }
 
 .right::before {
-  transform: translateY(-50%) translateX(200%);
+  transform: translateY(-50%) translateX(120%);
 }
 
 .date-today {

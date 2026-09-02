@@ -13,6 +13,7 @@ const ExperienceWindow = () => {
                     </div>
                     <div className="timeline-dash started-3rd-year">
                     </div>
+                    <div className="timeline-dash started-4th-year right"></div>
                 </div>
                 <div className="experiences">
                     <div className="work">
@@ -29,7 +30,7 @@ const ExperienceWindow = () => {
                             <div className="job-content">
                                 <ul className="responsibilities">
                                     <li className="job-function">
-                                        Built and owned a visual rule management interface for CoStar's proprietary CRM start-to-finish
+                                        Built and owned a visual rule management interface for CoStar's proprietary <a href="https://en.wikipedia.org/wiki/Customer_relationship_management" target='_blank'>CRM</a> software start-to-finish
                                     </li>
                                     <li className="job-function">
                                         Upgraded data-migration pipeline interface with an interactive editor
