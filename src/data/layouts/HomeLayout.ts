@@ -19,7 +19,7 @@ const Layout : WindowLayout = {
             position: 4,
             size: {x: 1000, y: 500},
             offset: {x:0,y:40}
-        }
+        },
     }
 }
 

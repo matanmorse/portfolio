@@ -9,6 +9,7 @@ import BlogTipWindow from "./components/windows/tips/BlogTipWindow";
 import blogPosts from "./data/blogposts";
 import MiscWindow from "./components/windows/acks/MiscWindow";
 import NicchanWindow from "./components/windows/acks/NicchanWindow";
+import { HomeTipWindow } from "./components/windows/tips/HomeTipWindow";
 
 const derivedRegisry = Object.fromEntries(
     blogPosts.map(post => [
@@ -26,7 +27,8 @@ const manualRegistry  = {
     "frequently asked questions": FAQWindow,
     "tip: blogs": BlogTipWindow,
     "misc": MiscWindow,
-    "nicchan": NicchanWindow
+    "nicchan": NicchanWindow,
+    "tip: icons": HomeTipWindow
 }
 
 const windowRegistry = {

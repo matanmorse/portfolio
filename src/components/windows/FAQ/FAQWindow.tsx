@@ -9,8 +9,8 @@ const FAQWindow = () => {
 			</p>
 			<h4 className="question-title">Your basic bio?</h4>
 			<ul>
-				<li>I'm Matan, 3rd year CS Student at University of Virginia </li>
-				<li>Aspiring Software Engineer</li>
+				<li>I'm Matan, 4th year CS Student at University of Virginia </li>
+				<li>Early-career Software Engineer</li>
 				<li>Originally from Southwest Virginia</li>
 				<li>Enjoy learning new things and building cool stuff</li>
 			</ul>

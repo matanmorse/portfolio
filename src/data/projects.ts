@@ -6,7 +6,7 @@ type Project = {
     repoLink: string,
     hasBlogPost?: boolean
 }
-import image from '../assets/project-icons/steamulator-icon.png'
+import image from '../assets/project-icons/prism-icon.png'
 import projectPalladiumImage from '../assets/project-icons/ProjectPalladium_Image.png'
 import osrsLeaderboardImage from '../assets/project-icons/osrsleaderboard-icon.png'
 import placeImage from '../assets/project-icons/place.jpg'
@@ -44,7 +44,7 @@ const completedProjects : Project[] = [
 const featuredProjects = [
   {
     image: image,
-    title: "Steamulator",
+    title: "Prism",
     description: "A steam-styled launcher for video game emulators like Citra, and MelonDS that runs on your PC",
     skills: ['react', 'electron', 'node'],
     repoLink: 'https://github.com/matanmorse/steamulation'
@@ -58,8 +58,8 @@ const featuredProjects = [
   },
   {
     image: projectPalladiumImage,
-    title: "Project Palladium",
-    description: "Video game engine written using the Monogame framework, used to make a mystical farm simulation game",
+    title: "Project Magicka",
+    description: "An ongoing, long-term project to create a video game engine from scratch and use it to make an MMO",
     skills: ['csharp', 'monogame', 'pixel Art'],
     repoLink: 'https://github.com/matanmorse/ProjectPalladium'
   },

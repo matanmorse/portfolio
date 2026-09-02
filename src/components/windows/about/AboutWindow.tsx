@@ -17,7 +17,7 @@ const AboutWindow = () => {
         </p>
         <p className="about-text">On this site, you'll find information about me as a person and as a professional, along with blog posts and projects I've chosen to showcase. Some are about solving real problems, some are about learning by building, and some are just because they sounded fun.</p>
 
-        <p className="about-text">If something here makes you curious, confused, or excited, it did its job. Welcome to my portfolio 😊​</p>
+        <p className="about-text">Tip: Click the icons on the left to go to different views!</p>
         </>
     )
 }
