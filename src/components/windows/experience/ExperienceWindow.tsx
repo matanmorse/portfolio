@@ -5,7 +5,6 @@ const ExperienceWindow = () => {
         <>
             <h4 className="experience-title">A brief timeline of some of my professional work and my proudest achievments in each </h4>
             <hr></hr>
-            <p className="coming-soon">Coming soon: Software Intern @ <a href="https://www.costar.com/" target="_blank" rel="noopener noreferrer">CoStar</a>!</p>
             <h5 className="date-today">Today</h5>
             <div className="work-timeline">
                 <div className="timeline-line">
@@ -14,16 +13,45 @@ const ExperienceWindow = () => {
                     </div>
                     <div className="timeline-dash started-3rd-year">
                     </div>
-                    <div className="timeline-dash start-2025 right">
-                    </div>
                 </div>
                 <div className="experiences">
+                    <div className="work">
+                        <div className="work-content">
+                            <h6 className="dates-worked">
+                                June 2026 - August 2026
+                            </h6>
+                            <h3 className="title">
+                                Technology Intern
+                            </h3>
+                            <h5 className="company-location">
+                                CoStar Group - Richmond, VA
+                            </h5>
+                            <div className="job-content">
+                                <ul className="responsibilities">
+                                    <li className="job-function">
+                                        Built and owned a visual rule management interface for CoStar's proprietary CRM start-to-finish
+                                    </li>
+                                    <li className="job-function">
+                                        Upgraded data-migration pipeline interface with an interactive editor
+                                    </li>
+                                    <li className="job-function">
+                                        Ran live demos, presented the final project to dozens of stakeholders
+                                    </li>
+                                    <li className="job-function">
+                                        Learned a lot from some very talented devs
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="hidden">
+                        </div>
+                    </div>
                     <div className="work">
                             <div className="hidden">
                             </div>
                             <div className="work-content">
                                 <h6 className="dates-worked">
-                                    May 2025 - Present
+                                    May 2025 - December 2025
                                 </h6>
                                 <h3 className="title">
                                     Software Developer Intern
