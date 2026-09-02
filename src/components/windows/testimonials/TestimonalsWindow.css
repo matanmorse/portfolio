@@ -30,3 +30,10 @@ svg {
     color: rgba(255,255,255,0.075);
 }
 
+.testimonial {
+    margin-bottom: 8px;
+}
+
+.show-more-button {
+    margin-top: 8px;
+}
